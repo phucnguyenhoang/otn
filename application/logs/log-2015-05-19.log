@@ -1,0 +1,8 @@
+ERROR - 2015-05-19 04:56:14 --> Severity: Parsing Error --> syntax error, unexpected ',', expecting ']' D:\xampp\htdocs\works\luotbao\application\modules\collect\models\collect_model.php 49
+ERROR - 2015-05-19 05:49:15 --> Severity: Parsing Error --> syntax error, unexpected '->' (T_OBJECT_OPERATOR) D:\xampp\htdocs\works\luotbao\application\modules\collect\models\collect_model.php 64
+ERROR - 2015-05-19 11:19:54 --> 404 Page Not Found: ../modules/collect/controllers/Collect/getSourceLink
+ERROR - 2015-05-19 11:20:44 --> 404 Page Not Found: ../modules/collect/controllers/Collect/get-source-link
+ERROR - 2015-05-19 11:20:52 --> 404 Page Not Found: ../modules/collect/controllers/Collect/getSourceLink
+ERROR - 2015-05-19 11:21:33 --> 404 Page Not Found: ../modules/collect/controllers/Collect/get-source-link
+ERROR - 2015-05-19 11:21:34 --> 404 Page Not Found: ../modules/collect/controllers/Collect/get-source-link
+ERROR - 2015-05-19 11:35:58 --> Severity: Notice --> Undefined index: vnexpress D:\xampp\htdocs\works\luotbao\application\modules\collect\models\collect_model.php 151
