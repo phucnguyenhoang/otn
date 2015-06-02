@@ -503,5 +503,5 @@ $config['proxy_ips'] = '';
  * load HMVC
  */
 $config['modules_locations'] = array(
-    APPPATH.'modules/' => '../modules/'
+    FCPATH.'modules/' => '../../modules/'
 );

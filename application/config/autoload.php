@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('cimongo/cimongo');
+$autoload['libraries'] = array('cimongo/cimongo', 'template', 'language');
 
 
 /*
@@ -104,7 +104,7 @@ $autoload['helper'] = array('url');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('template', 'language');
 
 
 /*
@@ -120,7 +120,7 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('common');
 
 
 /*

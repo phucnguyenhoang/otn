@@ -39,10 +39,7 @@ require dirname(__FILE__).'/Base.php';
 class MX_Controller 
 {
 	public $autoload = array();
-    public $language;
     public $layout;
-    public $css;
-    public $js;
 	
 	public function __construct() 
 	{
@@ -58,7 +55,6 @@ class MX_Controller
 		$this->load->_autoloader($this->autoload);
 
         // my config
-        $this->language = $this->config->item('language');
 	}
 	
 	public function __get($class) 
@@ -75,33 +71,6 @@ class MX_Controller
 
 	public function render($data = null)
 	{
-        // load css file
-        if (!empty($this->css)) {
-            if (is_array($this->css)) {
-                $data['res_css'] = $this->css;
-            } else {
-                $data['res_css'] = array($this->css);
-            }
-        }
-        // load js file
-        if (!empty($this->js)) {
-            if (is_array($this->js)) {
-                $data['res_js'] = $this->js;
-            } else {
-                $data['res_js'] = array($this->js);
-            }
-        }
 
-        $this->load->view('layout/header', $data);
-        if (!empty($this->layout)) {
-            if (is_array($this->layout)) {
-                foreach ($this->layout as $layout) {
-                    $this->load->view($layout, $data);
-                }
-            } else {
-                $this->load->view($this->layout, $data);
-            }
-        }
-        $this->load->view('layout/footer', $data);
 	}
 }

@@ -14,7 +14,8 @@ class Home extends MX_Controller {
             'lang_title' => $this->lang->line('title'),
             'hello' => 'Welcome to OTN shop'
         );
-
+        var_dump($this->template->getCSS());
+        var_dump($this->template->getJS());
         $this->layout = 'home';
         $this->render($data);
 	}
