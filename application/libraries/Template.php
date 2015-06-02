@@ -62,7 +62,7 @@ Class Template {
         return $result;
     }
 
-    public function getModules() {
-        return $this->CI->page->getModules();
+    public function getModules($page) {
+        return $this->CI->page->getModules($page);
     }
 }

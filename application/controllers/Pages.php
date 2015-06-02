@@ -57,9 +57,13 @@ class Pages extends MX_Controller {
                 }
         }
 
-        $moduleConf = $this->template->getModules();
-        foreach ($moduleConf as $region => $modules) {
-
+        $moduleConf = $this->template->getModules($page);
+        if (!$moduleConf) {
+            show_404();
         }
+        var_dump($moduleConf);
+        /*foreach ($moduleConf as $region => $modules) {
+
+        }*/
     }
 }
