@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class page extends CI_Model {
+class Page extends CI_Model {
     public function getModules() {
         $tplPath = APPPATH.'cache/template';
         if (is_file($tplPath)) {
