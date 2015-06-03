@@ -71,6 +71,9 @@ class MX_Controller
 
 	public function render($data = null)
 	{
-
+        $this->template->render($data);
+        $this->load->view('layout/header');
+        $this->load->view('layout/content');
+        $this->load->view('layout/footer');
 	}
 }
