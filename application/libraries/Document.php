@@ -10,9 +10,12 @@ class Document {
 
     public function __construct() {
         $this->CI =& get_instance();
-        $this->title = $this->CI->lang->line('title');
-        $this->keyword = $this->CI->lang->line('keyword');
-        $this->description = $this->CI->lang->line('description');
+        $this->_getDefaultValue();
+    }
+
+    public function setLang($lang) {
+        $this->CI->lang->load('common', $lang);
+        $this->_getDefaultValue();
     }
 
     public function setTitle($title) {
@@ -45,5 +48,11 @@ class Document {
 
     public function getJS() {
         return $this->js;
+    }
+
+    private function _getDefaultValue() {
+        $this->title = $this->CI->lang->line('title');
+        $this->keyword = $this->CI->lang->line('keyword');
+        $this->description = $this->CI->lang->line('description');
     }
 }

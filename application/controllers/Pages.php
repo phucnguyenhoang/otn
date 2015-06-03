@@ -7,9 +7,6 @@ class Pages extends MX_Controller {
         parent::__construct();
     }
 
-    /**
-     *
-     */
     public function index()
     {
         $URLParams = $this->uri->segments;
@@ -17,13 +14,13 @@ class Pages extends MX_Controller {
         switch (count($URLParams)) {
             case 0:
                 $lang = $this->language;
-                $page = 'home';
+                $page = '';
                 $params = array();
                 break;
             case 1:
                 if ($this->language->check($URLParams[1])) {
                     $lang = $URLParams[1];
-                    $page = 'home';
+                    $page = '';
                     $params = array();
                 } else {
                     $lang = $this->language;
@@ -56,11 +53,21 @@ class Pages extends MX_Controller {
                     $params = $URLParams;
                 }
         }
-        // set curr language and page
+        // check page exist in language
         $this->language->setLang($lang);
-        $this->template->setPage($page);
+        $this->lang->load('common', $this->language);
+        if (empty($page)) {
+            $page = $this->lang->line((string)$lang);
+        }
+        $langPage = $this->lang->line($page);
+        if (empty($langPage)) {
+            show_404();
+        }
 
-        $moduleConf = $this->template->getModules($page);
+        // set curr language and page
+        $this->template->setPage($langPage);
+
+        $moduleConf = $this->template->getModules($langPage);
         if (!$moduleConf) {
             show_404();
         }
@@ -79,8 +86,8 @@ class Pages extends MX_Controller {
         $data = array();
         foreach ($moduleConf as $region => $modules) {
             $moduleOrdered = array();
+            $regionData = '';
             if (count($modules) > 0) {
-                $regionData = '';
                 foreach ($modules as $module) {
                     $moduleOrdered[$module['order']] = $module['module'];
                 }

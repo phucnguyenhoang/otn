@@ -120,7 +120,7 @@ $autoload['config'] = array('template', 'language');
 |
 */
 
-$autoload['language'] = array('common');
+$autoload['language'] = array();
 
 
 /*

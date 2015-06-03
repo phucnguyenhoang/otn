@@ -21,10 +21,12 @@ Class Language {
     }
 
     public function setLang($lang) {
-        if ($this->check($lang)) {
-            $this->lang = $lang;
+        if ($this->check((string)$lang)) {
+            $this->lang = (string)$lang;
+            $this->CI->document->setLang((string)$lang);
         } else {
             $this->lang = self::LANG;
+            $this->CI->document->setLang(self::LANG);
         }
     }
 }
