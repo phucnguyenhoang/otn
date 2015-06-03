@@ -14,14 +14,13 @@ class Pages extends MX_Controller {
         switch (count($URLParams)) {
             case 0:
                 $lang = $this->language;
-                $page = 'home';
+                $page = '';
                 $params = array();
                 break;
             case 1:
                 if ($this->language->check($URLParams[1])) {
                     $lang = $URLParams[1];
-                    $this->language->setLang($lang);
-                    $page = 'home';
+                    $page = '';
                     $params = array();
                 } else {
                     $lang = $this->language;
@@ -32,7 +31,6 @@ class Pages extends MX_Controller {
             case 2:
                 if ($this->language->check($URLParams[1])) {
                     $lang = $URLParams[1];
-                    $this->language->setLang($lang);
                     $page = $URLParams[2];
                     $params = array();
                 } else {
@@ -44,7 +42,6 @@ class Pages extends MX_Controller {
             default:
                 if ($this->language->check($URLParams[1])) {
                     $lang = $URLParams[1];
-                    $this->language->setLang($lang);
                     $page = $URLParams[2];
                     unset($URLParams[1]);
                     unset($URLParams[2]);
@@ -56,10 +53,71 @@ class Pages extends MX_Controller {
                     $params = $URLParams;
                 }
         }
-
-        $moduleConf = $this->template->getModules();
-        foreach ($moduleConf as $region => $modules) {
-
+        // check page exist in language
+        $this->language->setLang($lang);
+        $this->lang->load('common', $this->language);
+        if (empty($page)) {
+            $page = $this->lang->line((string)$lang);
         }
+        $langPage = $this->lang->line($page);
+        if (empty($langPage)) {
+            show_404();
+        }
+
+        // set curr language and page
+        $this->template->setPage($langPage);
+
+        $moduleConf = $this->template->getModules($langPage);
+        if (!$moduleConf) {
+            show_404();
+        }
+
+
+        // check exist and run background module
+        if (!empty($moduleConf['background_modules'])) {
+            $bgModules = $moduleConf['background_modules'];
+            unset($moduleConf['background_modules']);
+            foreach ($bgModules as $bgModule) {
+                modules::run($bgModule);
+            }
+        }
+
+        // sort module and run it
+        $data = array();
+        foreach ($moduleConf as $region => $modules) {
+            $moduleOrdered = array();
+            $regionData = '';
+            if (count($modules) > 0) {
+                foreach ($modules as $module) {
+                    $moduleOrdered[$module['order']] = $module['module'];
+                }
+                ksort($moduleOrdered);
+
+                foreach ($moduleOrdered as $module) {
+                    $regionData .= modules::run($module);
+                    $config = array();
+                    $configPath = FCPATH.'modules/'.$module.'/config.php';
+                    if (file_exists($configPath)) {
+                        require_once($configPath);
+                        // get module css
+                        if (!empty($config['css'])) {
+                            foreach ($config['css'] as $css) {
+                                $cssPath = base_url('modules/'.$module.'/resources/css/'.$css.'.css');
+                                $this->document->pushCSS($cssPath);
+                            }
+                        }
+                        // get module js
+                        if (!empty($config['js'])) {
+                            foreach ($config['js'] as $js) {
+                                $jsPath = base_url('modules/'.$module.'/resources/js/'.$js.'.js');
+                                $this->document->pushJS($jsPath);
+                            }
+                        }
+                    }
+                }
+            }
+            $data[$region] = $regionData;
+        }
+        $this->render($data);
     }
 }
