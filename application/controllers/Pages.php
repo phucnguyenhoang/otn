@@ -70,6 +70,9 @@ class Pages extends MX_Controller {
         if (!empty($moduleConf['background_modules'])) {
             $bgModules = $moduleConf['background_modules'];
             unset($moduleConf['background_modules']);
+            foreach ($bgModules as $bgModule) {
+                modules::run($bgModule);
+            }
         }
 
         // sort module and run it
