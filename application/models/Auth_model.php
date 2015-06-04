@@ -12,27 +12,13 @@ class Auth_model extends CI_Model {
 	 * @return	array
 	 */
   	public function getUserGuessPermission(){
-  		$arrTemp = [
-  			'test/test/data1',
-  			'test/test/data3'
-  		];
-  		return $arrTemp;
-  	}
-
-  	public function login(){
-  		$arrTemp = array(
-			'user_info' => array(
-				'user_id' => 1,
-				'group_id' => 'admin',
-				'user_name' => 'Le Vinh Phu',
-				'role' => [
-					'test/test/data1',
-					'test/test/data2',
-					'test/test/data3'
-				]
-			)
-		);
-		return $arrTemp;
+  		$query = $this->cimongo->where(array('name' => 'guess'));
+		$query = $query->get('group_user');
+		if ($query->num_rows() == 1){
+			$group = $query->row();
+			return $group->function;
+		} 
+		return array();
   	}
 
   	/**
@@ -175,72 +161,11 @@ class Auth_model extends CI_Model {
 	 */
 	function delete_user($user_id)
 	{
-		$this->cimongo->where(array('_id' => new MongoId($user_id)))->delete();
-		// $this->cimongo->delete('user',array('_id' => new MongoId($user_id)));
-		/*if ($this->db->affected_rows() > 0) {
-			$this->delete_profile($user_id);
+		$is_delete = $this->cimongo->where(array('_id' => new MongoId($user_id)))->delete('user');
+		if ($is_delete == 1) {
 			return TRUE;
 		}
-		return FALSE;*/
-	}
-
-	/**
-	 * Set new password key for user.
-	 * This key can be used for authentication when resetting user's password.
-	 *
-	 * @param	int
-	 * @param	string
-	 * @return	bool
-	 */
-	function set_password_key($user_id, $new_pass_key)
-	{
-		$this->db->set('new_password_key', $new_pass_key);
-		$this->db->set('new_password_requested', date('Y-m-d H:i:s'));
-		$this->db->where('id', $user_id);
-
-		$this->db->update($this->table_name);
-		return $this->db->affected_rows() > 0;
-	}
-
-	/**
-	 * Check if given password key is valid and user is authenticated.
-	 *
-	 * @param	int
-	 * @param	string
-	 * @param	int
-	 * @return	void
-	 */
-	function can_reset_password($user_id, $new_pass_key, $expire_period = 900)
-	{
-		$this->db->select('1', FALSE);
-		$this->db->where('id', $user_id);
-		$this->db->where('new_password_key', $new_pass_key);
-		$this->db->where('UNIX_TIMESTAMP(new_password_requested) >', time() - $expire_period);
-
-		$query = $this->db->get($this->table_name);
-		return $query->num_rows() == 1;
-	}
-
-	/**
-	 * Change user password if password key is valid and user is authenticated.
-	 *
-	 * @param	int
-	 * @param	string
-	 * @param	string
-	 * @param	int
-	 * @return	bool
-	 */
-	function reset_password($user_id, $new_pass, $new_pass_key, $expire_period = 900)
-	{
-		$this->db->set('password', $new_pass);
-		$this->db->set('new_password_key', NULL);
-		$this->db->set('new_password_requested', NULL);
-		$this->db->where('id', $user_id);
-		$this->db->where('new_password_key', $new_pass_key);
-		$this->db->where('UNIX_TIMESTAMP(new_password_requested) >=', time() - $expire_period);
-
-		$this->db->update($this->table_name);
-		return $this->db->affected_rows() > 0;
+		return FALSE;
 	}
 
 	/**
@@ -252,74 +177,39 @@ class Auth_model extends CI_Model {
 	 */
 	function change_password($user_id, $new_pass)
 	{
-		$this->db->set('password', $new_pass);
-		$this->db->where('id', $user_id);
-
-		$this->db->update($this->table_name);
-		return $this->db->affected_rows() > 0;
+		$is_update = $this->cimongo->update('user',array('password' => $new_pass),array('_id' => new MongoId($user_id)));
+		if($is_update) return TRUE;
+		return FALSE;
 	}
 
 	/**
-	 * Set new email for user (may be activated or not).
-	 * The new email cannot be used for login or notification before it is activated.
+	 * sync account 
 	 *
-	 * @param	int
-	 * @param	string
-	 * @param	string
-	 * @param	bool
-	 * @return	bool
-	 */
-	function set_new_email($user_id, $new_email, $new_email_key, $activated)
-	{
-		$this->db->set($activated ? 'new_email' : 'email', $new_email);
-		$this->db->set('new_email_key', $new_email_key);
-		$this->db->where('id', $user_id);
-		$this->db->where('activated', $activated ? 1 : 0);
-
-		$this->db->update($this->table_name);
-		return $this->db->affected_rows() > 0;
-	}
-
-	/**
-	 * Activate new email (replace old email with new one) if activation key is valid.
-	 *
-	 * @param	int
 	 * @param	string
 	 * @return	bool
 	 */
-	function activate_new_email($user_id, $new_email_key)
+	function sync_account($group_name)
 	{
-		$this->db->set('email', 'new_email', FALSE);
-		$this->db->set('new_email', NULL);
-		$this->db->set('new_email_key', NULL);
-		$this->db->where('id', $user_id);
-		$this->db->where('new_email_key', $new_email_key);
-
-		$this->db->update($this->table_name);
-		return $this->db->affected_rows() > 0;
+		//get functions
+		$function = $this->getFunctionFromGroupUser($group_name);
+		var_dump($function);
+		//$is_update = $this->cimongo->update('user',array('function' => $function),array('group_id' => $group_name));
+		// $is_update =  $this->cimongo->where(array('group_id'=>$group_name))->set(array('function'=>$function))->update('user');
+		$is_update = $this->cimongo->where(array('group_id' => $group_name))->update_batch('user',array('function'=>$function));
+		if($is_update) return TRUE;
+		return FALSE;
 	}
 
-	/**
-	 * Update user login info, such as IP-address or login time, and
-	 * clear previously generated (but not activated) passwords.
-	 *
-	 * @param	int
-	 * @param	bool
-	 * @param	bool
-	 * @return	void
-	 */
-	function update_login_info($user_id, $record_ip, $record_time)
-	{
-		$this->db->set('new_password_key', NULL);
-		$this->db->set('new_password_requested', NULL);
-
-		if ($record_ip)		$this->db->set('last_ip', $this->input->ip_address());
-		if ($record_time)	$this->db->set('last_login', date('Y-m-d H:i:s'));
-
-		$this->db->where('id', $user_id);
-		$this->db->update($this->table_name);
+	function getFunctionFromGroupUser($group_name){
+		$query = $this->cimongo->where(array('name' => $group_name));
+		$query = $query->get('group_user');
+		if ($query->num_rows() == 1) {
+			$res = $query->row();
+			return $res->function;
+		}
+		return array();
 	}
-
 
 
 }
+
