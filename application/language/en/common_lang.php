@@ -8,3 +8,4 @@ $lang['description'] = 'Online store, provide every thing you need';
 $lang['en'] = 'home';
 $lang['home'] = 'home';
 $lang['products'] = 'products';
+$lang['login'] = 'login';
