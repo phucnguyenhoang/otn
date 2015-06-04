@@ -13,12 +13,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Bootstrap -->
     <link href="<?php echo base_url('resources/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('modules/admin/resources/bower_components/metisMenu/dist/metisMenu.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('modules/admin/resources/css/sb-admin-2.css'); ?>" rel="stylesheet">
-    <?php if (!empty($css)): ?>
+        <?php if (!empty($css)): ?>
         <?php foreach ($css as $cssPath): ?>
             <link href="<?php echo base_url('modules/admin/resources/'.$cssPath); ?>" rel="stylesheet">
         <?php endforeach; ?>
     <?php endif; ?>
+    <link href="<?php echo base_url('modules/admin/resources/css/sb-admin-2.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('modules/admin/resources/bower_components/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('modules/admin/resources/css/layout.css'); ?>" rel="stylesheet">
 

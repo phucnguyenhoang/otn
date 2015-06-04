@@ -10,7 +10,7 @@
 <script src="<?php echo base_url('modules/admin/resources/bower_components/metisMenu/dist/metisMenu.min.js'); ?>"></script>
 <?php if (!empty($js)): ?>
     <?php foreach ($js as $jsPath): ?>
-        <link href="<?php echo base_url('modules/admin/resources/'.$jsPath); ?>" rel="stylesheet">
+        <script src="<?php echo base_url('modules/admin/resources/'.$jsPath); ?>"></script>
     <?php endforeach; ?>
 <?php endif; ?>
 <script src="<?php echo base_url('modules/admin/resources/js/sb-admin-2.js'); ?>"></script>
