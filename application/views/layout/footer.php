@@ -4,6 +4,12 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 
+<?php if (!empty($this->document->getJS())) : ?>
+    <?php foreach ($this->document->getJS() as $js) : ?>
+        <script src="<?php echo $js; ?>"></script>
+    <?php endforeach; ?>
+<?php endif; ?>
+
 <?php if (!empty($this->template->getJS())) : ?>
     <?php foreach ($this->template->getJS() as $js) : ?>
         <script src="<?php echo $js; ?>"></script>
