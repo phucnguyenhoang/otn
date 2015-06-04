@@ -85,7 +85,7 @@ class Pages extends MX_Controller {
             $bgModules = $moduleConf['background_modules'];
             unset($moduleConf['background_modules']);
             foreach ($bgModules as $bgModule) {
-                modules::run($bgModule);
+                modules::run($bgModule, $params);
             }
         }
 
@@ -101,7 +101,7 @@ class Pages extends MX_Controller {
                 ksort($moduleOrdered);
 
                 foreach ($moduleOrdered as $module) {
-                    $regionData .= modules::run($module);
+                    $regionData .= modules::run($module, $params);
                     $config = array();
                     $configPath = FCPATH.'modules/'.$module.'/config.php';
                     if (file_exists($configPath)) {

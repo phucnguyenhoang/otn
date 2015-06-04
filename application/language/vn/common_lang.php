@@ -8,3 +8,4 @@ $lang['description'] = 'Nơi thỏa mãn nhu cầu mua sắm của bạn';
 $lang['vn'] = 'trang-chu';
 $lang['trang-chu'] = 'home';
 $lang['san-pham'] = 'products';
+$lang['dang-nhap'] = 'login';
