@@ -54,5 +54,6 @@ $route['(:any)'] = 'pages/index/$1';
 $route['(:any)/(:any)'] = 'pages/index/$1/$2';
 $route['(:any)/(:any)/(:any)'] = 'pages/index/$1/$2/$3';
 $route['(:any)/(:any)/(:any)/(:any)'] = 'pages/index/$1/$2/$3/$4';
+$route['admin/(:any)'] = 'pages/admin/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

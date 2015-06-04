@@ -5,12 +5,19 @@ class Pages extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        /*$this->load->model('brand_model');
+        $brands = $this->brand_model->getBrandLikeName('p');
+        var_dump($brands);die();*/
     }
 
     public function index()
     {
         $URLParams = $this->uri->segments;
         // check parameter from URL
+        if ($URLParams[1] == 'admin') {
+            $this->admin($URLParams);
+            exit;
+        }
         switch (count($URLParams)) {
             case 0:
                 $lang = $this->language;
@@ -119,5 +126,23 @@ class Pages extends MX_Controller {
             $data[$region] = $regionData;
         }
         $this->render($data);
+    }
+
+    public function admin($URLParams) {
+        unset($URLParams[1]);
+        // get controller
+        $controller = 'home';
+        if (!empty($URLParams[2])) {
+            $controller = $URLParams[2];
+            unset($URLParams[2]);
+        }
+        // get function
+        $function = 'index';
+        if (!empty($URLParams[3])) {
+            $function = $URLParams[3];
+            unset($URLParams[3]);
+        }
+
+        echo modules::run('admin/'.$controller.'/'.$function, $URLParams);
     }
 }
