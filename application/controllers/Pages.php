@@ -14,7 +14,7 @@ class Pages extends MX_Controller {
     {
         $URLParams = $this->uri->segments;
         // check parameter from URL
-        if ($URLParams[1] == 'admin') {
+        if (!empty($URLParams[1]) && $URLParams[1] == 'admin') {
             $this->admin($URLParams);
             exit;
         }
