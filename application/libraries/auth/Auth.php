@@ -16,18 +16,6 @@ class Auth {
 		$this->CI =& get_instance();
 		$this->CI->load->library('session');
 		$this->CI->load->model('auth_model');
-
-		// $this->login('user','123456');
-		// $this->logout();
-		// $this->test();
-		/*$this->create_user(
-			array(
-				'username' => 'user2',
-				'email' => 'lvphu609822@gmail.com',
-				'password' => '654321'
-			)
-		);*/
-		$this->sync_account('admin');
 	}
 
 	/**
@@ -50,6 +38,8 @@ class Auth {
 		else{
 			//get user guess permission
 			$userGuessPermission = $this->CI->auth_model->getUserGuessPermission();
+			var_dump($functionAccess);
+			var_dump($userGuessPermission);
 			if(in_array($functionAccess,$userGuessPermission)){
 				return true;
 			}
@@ -161,22 +151,18 @@ class Auth {
 
 
 /*
-data temp
-
 {
-    "_id" : ObjectId("556ec04cae2a0602058b4572"),
-    "email" : "lvphu6098@gmail.com",
-    "group_id" : "user",
-    "username" : "user",
-    "role" : [ 
+    "_id" : ObjectId("556ec03cae2a06ff048b4567"),
+    "email" : "lvphu6099@gmail.com",
+    "group_id" : "admin",
+    "username" : "admin1",
+    "function" : [ 
         "test/test/data1", 
+        "test/test/data2", 
         "test/test/data3"
     ],
-    "created_at" : "2015-06-03 15:52:28",
-    "is_active" : 1,
-    "password" : "$2a$08$YiO0P1287X2r5GnE1CcDY.mBcNy3WkG/ozvCThC5AibFMdN/Y7JsK"
+    "created_at" : "2015-06-03 15:52:12",
+    "is_active" : 1
 }
-
-pass: 123456
 
 */

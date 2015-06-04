@@ -55,10 +55,6 @@ class MX_Controller
 		$this->load->_autoloader($this->autoload);
 
         // my config
-        if(!$this->auth->isAccess()){
-        	echo "you don't have permission to access";
-        	die();
-        }
 	}
 	
 	public function __get($class) 
