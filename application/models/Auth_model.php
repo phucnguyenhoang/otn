@@ -183,7 +183,7 @@ class Auth_model extends CI_Model {
 	}
 
 	/**
-	 * sync account 
+	 * sync permisson to all account by group_id
 	 *
 	 * @param	string
 	 * @return	bool
@@ -192,9 +192,6 @@ class Auth_model extends CI_Model {
 	{
 		//get functions
 		$function = $this->getFunctionFromGroupUser($group_name);
-		var_dump($function);
-		//$is_update = $this->cimongo->update('user',array('function' => $function),array('group_id' => $group_name));
-		// $is_update =  $this->cimongo->where(array('group_id'=>$group_name))->set(array('function'=>$function))->update('user');
 		$is_update = $this->cimongo->where(array('group_id' => $group_name))->update_batch('user',array('function'=>$function));
 		if($is_update) return TRUE;
 		return FALSE;
