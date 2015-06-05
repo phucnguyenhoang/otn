@@ -16,6 +16,7 @@ class Auth {
 		$this->CI =& get_instance();
 		$this->CI->load->library('session');
 		$this->CI->load->model('auth_model');
+		// $this->logout("admin");
 	}
 
 	/**
@@ -23,28 +24,57 @@ class Auth {
 	 *
 	 * @return boolean
 	**/
-	public function isAccess(){
+	public function isAccess($pageAccess = "",$functionAccess = ""){
+
 		//get function access
-		$functionAccess = $this->getFunctionAccess();
-		//user logined
-		if(!empty($this->CI->session->userdata('user_info'))){
-			$userInfo = $this->CI->session->userdata('user_info');			
-			if(in_array($functionAccess,$userInfo['function'])){
-				return true;
-			}
-			return false;
+		if($functionAccess == ""){
+			$functionAccess = $this->getFunctionAccess();
 		}
-		//user not login
-		else{
-			//get user guess permission
-			$userGuessPermission = $this->CI->auth_model->getUserGuessPermission();
-			var_dump($functionAccess);
-			var_dump($userGuessPermission);
-			if(in_array($functionAccess,$userGuessPermission)){
-				return true;
-			}
-			return false;
-		}
+
+		switch ($pageAccess) {
+			case 'admin':
+				//user logined			
+				if(!empty($this->CI->session->userdata('user_admin_info'))){
+					$userInfo = $this->CI->session->userdata('user_admin_info');
+					if(in_array($functionAccess,$userInfo['function'])){
+						return true;
+					}else{
+						return false;
+					}
+				}
+				//user not login
+				else{
+					//get user guess permission
+					$userGuessPermission = $this->CI->auth_model->getUserGuessPermission();
+					if(in_array($functionAccess,$userGuessPermission)){
+						return true;
+					}else{
+						// return false;
+						redirect(base_url('admin/verify'));
+					}
+				}
+				break;
+			default:
+				//user logined
+				if(!empty($this->CI->session->userdata('user_info'))){
+					$userInfo = $this->CI->session->userdata('user_info');			
+					if(in_array($functionAccess,$userInfo['function'])){
+						return true;
+					}
+					return false;
+				}
+				//user not login
+				else{
+					//get user guess permission
+					$userGuessPermission = $this->CI->auth_model->getUserGuessPermission();
+					if(in_array($functionAccess,$userGuessPermission)){
+						return true;
+					}
+					return false;
+				}
+				break;
+		}		
+		
 	}
 
 	/**
@@ -53,23 +83,46 @@ class Auth {
 	 * @param string
 	 * @return boolean
 	**/
-	public function login($login, $password){
-		//check exsit user/email login
-		$userInfo = $this->CI->auth_model->get_user_by_login($login);
-  		if($userInfo != NULL){
-  			//check password
-  			$hasher = new PasswordHash(8,false);
-			// $password_hash = $hasher->HashPassword($password);
-			if($hasher->CheckPassword($password,$userInfo->password)){
-				$userdata = array(
-					'username' => $userInfo->username,
-					'email' => $userInfo->email,
-					'function' => $userInfo->function 
-				);
-				$this->CI->session->set_userdata(array('user_info' => $userdata));
-				return true;
-			}			
-  		}
+	public function login($login, $password, $pageAccess = ""){
+		switch ($pageAccess) {
+			case 'admin':
+				//check exsit user/email login
+				$userInfo = $this->CI->auth_model->get_user_by_login($login,true);
+		  		if($userInfo != NULL){
+		  			//check password
+		  			$hasher = new PasswordHash(8,false);
+					// $password_hash = $hasher->HashPassword($password);
+					if($hasher->CheckPassword($password,$userInfo->password)){
+						$userdata = array(
+							'username' => $userInfo->username,
+							'email' => $userInfo->email,
+							'function' => $userInfo->function 
+						);
+						$this->CI->session->set_userdata(array('user_admin_info' => $userdata));
+						return true;
+					}			
+		  		}		
+				break;
+			
+			default:
+				//check exsit user/email login
+				$userInfo = $this->CI->auth_model->get_user_by_login($login);
+		  		if($userInfo != NULL){
+		  			//check password
+		  			$hasher = new PasswordHash(8,false);
+					// $password_hash = $hasher->HashPassword($password);
+					if($hasher->CheckPassword($password,$userInfo->password)){
+						$userdata = array(
+							'username' => $userInfo->username,
+							'email' => $userInfo->email,
+							'function' => $userInfo->function 
+						);
+						$this->CI->session->set_userdata(array('user_info' => $userdata));
+						return true;
+					}			
+		  		}				
+				break;
+		}
 		return false;
 	}
 
@@ -78,8 +131,16 @@ class Auth {
 	 *
 	 * @return void
 	**/
-	public function logout(){
-		$this->CI->session->unset_userdata('user_info');
+	public function logout($pageAccess = ""){
+		switch ($pageAccess) {
+			case 'admin':
+				$this->CI->session->unset_userdata('user_admin_info');
+				break;
+			
+			default:
+				$this->CI->session->unset_userdata('user_info');
+				break;
+		}
 	}
 
 	/**

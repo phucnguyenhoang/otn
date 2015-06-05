@@ -43,18 +43,19 @@ class Auth_model extends CI_Model {
 	 * @param	string
 	 * @return	object
 	 */
-	function get_user_by_login($login)
+	function get_user_by_login($login,$user_system = false)
 	{
-		$query = $this->cimongo->where(array("username" => strtolower($login)));
+		$where = array(
+				"username" => strtolower($login),
+				"email" => strtolower($login)
+		);
+		$query = $this->cimongo->or_where($where);
+		if($user_system){
+			$query = $this->cimongo->where(array('user_system' => 1));
+		}
 		$query = $query->get('user');
 		if ($query->num_rows() == 1){
 			return $query->row();
-		}else{
-			$query = $this->cimongo->where(array("email" => strtolower($login)));
-			$query = $query->get('user');
-			if ($query->num_rows() == 1){
-				return $query->row();
-			}
 		}
 		return NULL;
 	}
