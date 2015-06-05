@@ -18,3 +18,12 @@ var Admin = {
         this.eventHandle();
     }
 };
+
+var Verify = {
+    eventHandle: function(){
+        
+    },
+    run: function(){
+        this.eventHandle();
+    }
+}
