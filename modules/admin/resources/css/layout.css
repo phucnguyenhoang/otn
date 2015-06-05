@@ -1,0 +1,31 @@
+.image-selector {
+    display: none;
+}
+#img_selector_view_pattern {
+    display: none;
+}
+div.image-selector-view {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background: url("http://iwork.com/otn/resources/files/thumbs/bo-suu-tap-giay-cao-got-di-tiec-mau-den-ca-tinh-cho-ban-nu-1.jpg");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+div.image-selector-view .control {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    background-color: rgba(160, 160, 160, .5);
+    text-align: center;
+    opacity: 0;
+}
+div.image-selector-view .control:hover {
+    opacity: 1;
+}
+div.image-selector-view .control button {
+    margin-top: 25px;
+}
