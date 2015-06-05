@@ -8,6 +8,8 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo base_url('resources/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('modules/admin/resources/bower_components/metisMenu/dist/metisMenu.min.js'); ?>"></script>
+<script src="<?php echo base_url('modules/admin/resources/bower_components/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?php echo base_url('modules/admin/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js'); ?>"></script>
 <?php if (!empty($js)): ?>
     <?php foreach ($js as $jsPath): ?>
         <script src="<?php echo base_url('modules/admin/resources/'.$jsPath); ?>"></script>

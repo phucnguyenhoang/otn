@@ -13,6 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Bootstrap -->
     <link href="<?php echo base_url('resources/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('modules/admin/resources/bower_components/metisMenu/dist/metisMenu.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('modules/admin/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('modules/admin/resources/bower_components/datatables-responsive/css/dataTables.responsive.css'); ?>" rel="stylesheet">
         <?php if (!empty($css)): ?>
         <?php foreach ($css as $cssPath): ?>
             <link href="<?php echo base_url('modules/admin/resources/'.$cssPath); ?>" rel="stylesheet">
