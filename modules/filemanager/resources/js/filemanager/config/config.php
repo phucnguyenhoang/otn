@@ -342,17 +342,13 @@ return array_merge(
 		'MaxSizeUpload' => ((int)(ini_get('post_max_size')) < $config['MaxSizeUpload'])
 			? (int)(ini_get('post_max_size')) : $config['MaxSizeUpload'],
 		'ext'=> array_merge(
-			$config['ext_img'],
-			$config['ext_file'],
-			$config['ext_misc'],
-			$config['ext_video'],
-			$config['ext_music']
+			$config['ext_img']
 		),
 		// For a list of options see: https://developers.aviary.com/docs/web/setup-guide#constructor-config
 		'aviary_defaults_config' => array(
 			'apiKey'     => $config['aviary_apiKey'],
 			'apiVersion' => 3,
-			'language'   => 'en',
+			'language'   => 'en_EN',
 			'theme'      => 'light',
 			'tools'      => 'all'
 		),
