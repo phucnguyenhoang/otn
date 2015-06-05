@@ -142,7 +142,11 @@ class Pages extends MX_Controller {
             $function = $URLParams[3];
             unset($URLParams[3]);
         }
-
+        //check permission
+        if(!$this->auth->isAccess("admin",'admin/'.$controller.'/'.$function)){
+            return false;
+        }
+        
         echo modules::run('admin/'.$controller.'/'.$function, $URLParams);
     }
 }
