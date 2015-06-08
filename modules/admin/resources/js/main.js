@@ -61,7 +61,7 @@ var Verify = {
     run: function(){
         this.eventHandle();
     }
-}};
+};
 function responsive_filemanager_callback(field_id){
     var currInputImage = $('#'+field_id),
         url = currInputImage.val();
