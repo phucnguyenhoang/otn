@@ -11,7 +11,7 @@ div.image-selector-view {
     border: 1px solid #cccccc;
     border-radius: 5px;
     background: url("http://iwork.com/otn/resources/files/thumbs/bo-suu-tap-giay-cao-got-di-tiec-mau-den-ca-tinh-cho-ban-nu-1.jpg");
-    background-size: auto;
+    background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
 }
