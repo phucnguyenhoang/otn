@@ -1,10 +1,5 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header"><?php echo $lang_title; ?> <small><?php echo $lang_create; ?></small></h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
         <input type="text" class="image-selector">
         <input type="text" class="image-selector">
     </div>

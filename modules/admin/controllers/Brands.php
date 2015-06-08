@@ -8,8 +8,16 @@ class Brands extends MX_Controller {
         $this->lang->load('brand', 'admin');
     }
     public function index() {
+        $breadCrumb = array(
+            $this->lang->line('brands') => ''
+        );
+        $buttons = array(
+            'create' => true
+        );
         $header = array(
-            'lang_title' => $this->lang->line('title')
+            'lang_title' => $this->lang->line('title'),
+            'bread_crumb' => $breadCrumb,
+            'buttons' => $buttons
         );
         $content = array(
             'lang_title' => $this->lang->line('title')
@@ -20,8 +28,17 @@ class Brands extends MX_Controller {
     }
 
     public function create() {
+        $breadCrumb = array(
+            $this->lang->line('brands') => 'admin/brands',
+            $this->lang->line('create') => ''
+        );
+        $buttons = array(
+            'cancel' => true
+        );
         $header = array(
-            'lang_title' => $this->lang->line('create_title')
+            'lang_title' => $this->lang->line('create_title'),
+            'bread_crumb' => $breadCrumb,
+            'buttons' => $buttons
         );
         $content = array(
             'lang_title' => $this->lang->line('title'),

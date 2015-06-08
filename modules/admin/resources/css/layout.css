@@ -10,8 +10,8 @@ div.image-selector-view {
     margin: 5px;
     border: 1px solid #cccccc;
     border-radius: 5px;
-    background: url("http://iwork.com/otn/resources/files/thumbs/bo-suu-tap-giay-cao-got-di-tiec-mau-den-ca-tinh-cho-ban-nu-1.jpg");
-    background-size: auto;
+    background: url("../img/no-image.png");
+    background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -28,4 +28,19 @@ div.image-selector-view .control:hover {
 }
 div.image-selector-view .control button {
     margin-top: 25px;
+}
+
+.page-header {
+    margin: 0px 0 15px;
+    border-bottom: 2px solid #cccccc;
+    padding-bottom: 0px;
+}
+.page-header h1 {
+    display: inline-block;
+}
+.page-header .breadcrumb {
+    display: inline-block;
+}
+.page-header .pull-right {
+    margin-top: 20px;
 }

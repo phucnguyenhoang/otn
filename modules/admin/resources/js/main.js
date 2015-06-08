@@ -64,9 +64,10 @@ var Verify = {
 };
 function responsive_filemanager_callback(field_id){
     var currInputImage = $('#'+field_id),
-        url = currInputImage.val();
+        url = currInputImage.val(),
+        imageName = url.substr(url.lastIndexOf('/') + 1, url.length - url.lastIndexOf('/') - 1);
 
     url = url.replace('/files/source', '/files/thumbs');
     currInputImage.next().css('backgroundImage', 'url("' + url + '")');
-    console.log(url);
+    currInputImage.val(imageName);
 }
