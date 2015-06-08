@@ -11,8 +11,12 @@ var Admin = {
         this.onClickBtnImageSelector();
     },
     _initDataTable: function() {
-        $('.data-tables').DataTable({
-            responsive: true
+        var table = $('.data-tables');
+        table.DataTable({
+            responsive: true,
+            "columnDefs": [
+                { "orderable": false, "targets": table.find('th').length - 1 }
+            ]
         });
     },
     _initImageSelector: function() {

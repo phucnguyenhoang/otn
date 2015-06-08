@@ -6,6 +6,7 @@ class Brands extends MX_Controller {
         parent::__construct();
         $this->lang->load('common', 'admin');
         $this->lang->load('brand', 'admin');
+        $this->load->model('brand_model');
     }
     public function index() {
         $breadCrumb = array(
@@ -19,8 +20,14 @@ class Brands extends MX_Controller {
             'bread_crumb' => $breadCrumb,
             'buttons' => $buttons
         );
+
+        $brands = $this->brand_model->getBrands(false);
         $content = array(
-            'lang_title' => $this->lang->line('title')
+            'lang_title' => $this->lang->line('title'),
+            'lang_list_title' => $this->lang->line('list_title'),
+            'lang_name' => $this->lang->line('name'),
+            'lang_description' => $this->lang->line('description'),
+            'brands' => $brands
         );
         $this->load->view('layout/header', $header);
         $this->load->view('brands/index', $content);
