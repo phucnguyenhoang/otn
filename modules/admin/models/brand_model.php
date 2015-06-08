@@ -25,8 +25,13 @@ class Brand_model extends CI_Model {
      * }
      */
 
-    public function getBrands() {
-        $query = $this->cimongo->get('brands');
+    public function getBrands($product = true) {
+        if ($product) {
+            $query = $this->cimongo->get('brands');
+        } else {
+            $query = $this->cimongo->select(array('name', 'image', 'description'))->get('brands');
+        }
+
 
         return $query->result_object();
     }

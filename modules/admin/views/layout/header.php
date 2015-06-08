@@ -379,16 +379,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-lg-12">
                     <div class="page-header">
                         <h1><?php echo $lang_title; ?></h1>
-                        <ol class="breadcrumb">
-                            <li><a href="<?php echo base_url('admin'); ?>"><span class="glyphicon glyphicon-home"></span> <?php echo $this->lang->line('home'); ?></a></li>
-                            <?php foreach ($bread_crumb as $item => $link): ?>
-                                <?php if ($link != ''): ?>
-                                    <li><a href="<?php echo base_url($link); ?>"><?php echo $item; ?></a></li>
-                                <?php else: ?>
-                                    <li class="active"><?php echo $item; ?></li>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </ol>
+                        <?php if (!empty($bread_crumb)): ?>
+                            <ol class="breadcrumb">
+                                <li><a href="<?php echo base_url('admin'); ?>"><span class="glyphicon glyphicon-home"></span> <?php echo $this->lang->line('home'); ?></a></li>
+                                <?php foreach ($bread_crumb as $item => $link): ?>
+                                    <?php if ($link != ''): ?>
+                                        <li><a href="<?php echo base_url($link); ?>"><?php echo $item; ?></a></li>
+                                    <?php else: ?>
+                                        <li class="active"><?php echo $item; ?></li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ol>
+                        <?php endif; ?>
                         <?php if (!empty($buttons)): ?>
                             <div class="pull-right">
                                 <?php if (!empty($buttons['create'])): ?>
