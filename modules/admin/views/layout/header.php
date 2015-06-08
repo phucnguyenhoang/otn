@@ -375,4 +375,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
-
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h1><?php echo $lang_title; ?></h1>
+                        <ol class="breadcrumb">
+                            <li><a href="<?php echo base_url('admin'); ?>"><span class="glyphicon glyphicon-home"></span> <?php echo $this->lang->line('home'); ?></a></li>
+                            <?php foreach ($bread_crumb as $item => $link): ?>
+                                <?php if ($link != ''): ?>
+                                    <li><a href="<?php echo base_url($link); ?>"><?php echo $item; ?></a></li>
+                                <?php else: ?>
+                                    <li class="active"><?php echo $item; ?></li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ol>
+                        <?php if (!empty($buttons)): ?>
+                            <div class="pull-right">
+                                <?php if (!empty($buttons['create'])): ?>
+                                    <a class="btn btn-primary btn-sm" href="<?php echo base_url(implode('/', $this->uri->segments).'/create'); ?>">
+                                        <span class="glyphicon glyphicon-plus-sign"></span> <?php echo $this->lang->line('btn_create'); ?>
+                                    </a>
+                                    <?php unset($buttons['create']); ?>
+                                <?php endif; ?>
+                                <?php if (!empty($buttons['cancel'])): ?>
+                                    <a class="btn btn-default btn-sm" href="<?php echo base_url('admin/'.$this->uri->segment(2)); ?>">
+                                        <?php echo $this->lang->line('btn_cancel'); ?>
+                                    </a>
+                                    <?php unset($buttons['cancel']); ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
