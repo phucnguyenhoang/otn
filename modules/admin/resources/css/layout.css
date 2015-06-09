@@ -45,3 +45,8 @@ div.image-selector-view .control button {
 .page-header .pull-right {
     margin-top: 20px;
 }
+
+.error {
+    color:red;
+    font-size:13px;
+}
