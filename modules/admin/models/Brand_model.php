@@ -25,6 +25,43 @@ class Brand_model extends CI_Model {
      * }
      */
 
+    public  $rules = array(
+            array(
+                 'field'   => 'username', 
+                 'label'   => 'lang:brands_name', 
+                 'rules'   => 'required'
+            ),
+            array(
+                 'field'   => 'password', 
+                 'label'   => 'Password', 
+                 'rules'   => 'required'
+            ),
+            array(
+                 'field'   => 'passconf', 
+                 'label'   => 'Password Confirmation', 
+                 'rules'   => 'required'
+            ),   
+            array(
+                 'field'   => 'email', 
+                 'label'   => 'Email', 
+                 'rules'   => 'required'
+            )
+    );
+    
+    public function setFormValidate(){
+        $this->lang->load('brand_lang');
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->form_validation->set_rules($this->rules);
+        if ($this->form_validation->run() == FALSE)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public function getBrands($product = true) {
         if ($product) {
             $query = $this->cimongo->get('brands');
