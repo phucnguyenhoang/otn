@@ -1,5 +1,6 @@
 $(function() {
     Admin.run();
+    console.log($('#base_url').val());
 });
 var Admin = {
     init: function() {
@@ -69,7 +70,8 @@ var Verify = {
 function responsive_filemanager_callback(field_id){
     var currInputImage = $('#'+field_id),
         url = currInputImage.val(),
-        imageName = url.substr(url.lastIndexOf('/') + 1, url.length - url.lastIndexOf('/') - 1);
+        baseUrl = $('#base_url').val(),
+        imageName = url.replace(baseUrl + 'resources/files/source/', '');
 
     url = url.replace('/files/source', '/files/thumbs');
     currInputImage.next().css('backgroundImage', 'url("' + url + '")');
