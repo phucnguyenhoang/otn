@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *      alias: <string>,
  *      name: <string>,
  *      image: <string>,
- *      sort: <number>,
+ *      order: <number>,
  *      status: <number>,
  *      default: <number>
  * }
@@ -24,7 +24,7 @@ Class Language {
             'alias' => 'vn',
             'name' => 'Việt Nam',
             'image' => 'vn.png',
-            'sort' => 1,
+            'order' => 1,
             'status' => 1,
             'default' => 1
         );
@@ -56,7 +56,7 @@ Class Language {
             $lang = json_decode(file_get_contents($tplPath), true);
             foreach ($lang as $row) {
                 unset($row['_id']);
-                $result[$row['sort']] = $row;
+                $result[$row['order']] = $row;
             }
             ksort($result);
             return $result;
