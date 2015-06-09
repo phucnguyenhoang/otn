@@ -103,7 +103,7 @@ $autoload['helper'] = array('url','form');
 |
 */
 
-$autoload['config'] = array('template', 'language');
+$autoload['config'] = array('template');
 
 
 /*

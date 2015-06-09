@@ -65,6 +65,14 @@ Class Language {
         return $this->default;
     }
 
+    public function getFlag($alias = null) {
+        if (empty($alias)) {
+            return base_url('resources/images/flags/'.$this->lang.'.png');
+        } else {
+            return base_url('resources/images/flags/'.$alias.'.png');
+        }
+    }
+
     private function _getLangSupport() {
         $tplPath = APPPATH.'cache/language';
         if (is_file($tplPath)) {
