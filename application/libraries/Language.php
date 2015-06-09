@@ -1,15 +1,34 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*
+ * {
+ *      alias: <string>,
+ *      name: <string>,
+ *      image: <string>,
+ *      order: <number>,
+ *      status: <number>,
+ *      default: <number>
+ * }
+ */
+
 Class Language {
     const LANG = 'vn';
     public $lang;
+    private $default;
     public function __construct()
     {
         $this->CI =& get_instance();
-        $this->CI->config->load('language');
         $this->lang = self::LANG;
-        $this->langSupport = $this->CI->config->item('lang');
+        $this->default = array(
+            'alias' => 'vn',
+            'name' => 'Việt Nam',
+            'image' => 'vn.png',
+            'order' => 1,
+            'status' => 1,
+            'default' => 1
+        );
+        $this->langSupport = $this->_getLangSupport();
     }
 
     public function __toString() {
@@ -28,5 +47,43 @@ Class Language {
             $this->lang = self::LANG;
             $this->CI->document->setLang(self::LANG);
         }
+    }
+
+    public function getLang() {
+        $tplPath = APPPATH.'cache/language';
+        if (is_file($tplPath)) {
+            $result = array();
+            $lang = json_decode(file_get_contents($tplPath), true);
+            foreach ($lang as $row) {
+                unset($row['_id']);
+                $result[$row['order']] = $row;
+            }
+            ksort($result);
+            return $result;
+        }
+
+        return $this->default;
+    }
+
+    public function getFlag($alias = null) {
+        if (empty($alias)) {
+            return base_url('resources/images/flags/'.$this->lang.'.png');
+        } else {
+            return base_url('resources/images/flags/'.$alias.'.png');
+        }
+    }
+
+    private function _getLangSupport() {
+        $tplPath = APPPATH.'cache/language';
+        if (is_file($tplPath)) {
+            $result = array();
+            $lang = json_decode(file_get_contents($tplPath), true);
+            foreach ($lang as $row) {
+                array_push($result, $row['alias']);
+            }
+            return $result;
+        }
+
+        return array($this->default['alias']);
     }
 }

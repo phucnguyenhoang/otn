@@ -10,6 +10,6 @@ class Lastest_product extends MX_Controller {
 
     public function index()
     {
-        return '<div class="alert alert-info">lastest product</div>';
+        return '<img src="'.$this->language->getFlag().'">';
     }
 }
