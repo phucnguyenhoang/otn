@@ -35,8 +35,6 @@ class Brands extends MX_Controller {
     }
 
     public function create() {
-       
-
         $breadCrumb = array(
             $this->lang->line('brands') => 'admin/brands',
             $this->lang->line('create') => ''
@@ -65,7 +63,47 @@ class Brands extends MX_Controller {
         if(!$this->brand_model->setFormValidate()){
             $this->create();
         }else{
-            echo 'success';
+            $data = $this->input->post();
+            $this->brand_model->storeBrand($data);
+            redirect(base_url('admin/brands'));
+        }
+    }
+
+    public function edit($param){
+        // var_dump($param[4]); exit();
+        $breadCrumb = array(
+            $this->lang->line('brands') => 'admin/brands',
+            $this->lang->line('edit') => ''
+        );
+        $buttons = array(
+            'cancel' => true,
+            'save' => true
+        );
+        $header = array(
+            'lang_title' => $this->lang->line('edit_title'),
+            'bread_crumb' => $breadCrumb,
+            'buttons' => $buttons
+        );
+        $content = array(
+            'lang_title' => $this->lang->line('edit_title'),
+            'lang_edit' => $this->lang->line('edit'),
+            'lang_btn_edit' => $this->lang->line('btn_edit'),
+            'lang_file_manager_title' => $this->lang->line('file_manager_title'),
+            'record' => $this->brand_model->getBrandById($param[4])
+        );
+        $this->load->view('layout/header', $header);
+        $this->load->view('brands/edit', $content);
+        $this->load->view('layout/footer');
+    }
+
+    public function update(){
+        $data =$this->input->post();
+        // var_dump($data); exit();
+        if(!$this->brand_model->setFormValidate()){
+            $this->edit(array(4 => $data['_id']));
+        }else{
+            $this->brand_model->updateBrand($data);
+            redirect(base_url('admin/brands'));
         }
     }
 }

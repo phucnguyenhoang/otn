@@ -22,7 +22,10 @@
                                         <td><?php echo($order + 1); ?></td>
                                         <td><?php echo $brand->name; ?></td>
                                         <td><?php echo $brand->description; ?></td>
-                                        <td class="center">4</td>
+                                        <td class="center">
+                                            <a class="btn btn-xs btn-success" href="<?php echo base_url("admin/brands/edit/$brand->_id"); ?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                            <button class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
