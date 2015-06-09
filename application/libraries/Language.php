@@ -19,7 +19,6 @@ Class Language {
     public function __construct()
     {
         $this->CI =& get_instance();
-        $this->CI->config->load('language');
         $this->lang = self::LANG;
         $this->default = array(
             'alias' => 'vn',
@@ -29,7 +28,7 @@ Class Language {
             'status' => 1,
             'default' => 1
         );
-        $this->langSupport = $this->CI->config->item('lang');
+        $this->langSupport = $this->_getLangSupport();
     }
 
     public function __toString() {
@@ -64,5 +63,19 @@ Class Language {
         }
 
         return $this->default;
+    }
+
+    private function _getLangSupport() {
+        $tplPath = APPPATH.'cache/language';
+        if (is_file($tplPath)) {
+            $result = array();
+            $lang = json_decode(file_get_contents($tplPath), true);
+            foreach ($lang as $row) {
+                array_push($result, $row['alias']);
+            }
+            return $result;
+        }
+
+        return array($this->default['alias']);
     }
 }
