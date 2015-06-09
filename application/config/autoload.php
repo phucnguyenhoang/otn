@@ -60,8 +60,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('cimongo/cimongo', 'template', 'language', 'document','auth/auth','form_validation');
-
+$autoload['libraries'] = array('cimongo/cimongo', 'template', 'language', 'document', 'image', 'auth/auth', 'form_validation');
 
 /*
 | -------------------------------------------------------------------

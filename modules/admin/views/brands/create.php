@@ -1,10 +1,4 @@
-<div class="row">
-    <div class="col-lg-12">
-        <input type="text" class="image-selector">
-        <input type="text" class="image-selector">
-    </div>
-</div>
-<br>
+
 <!-- <div id="img_selector_view_pattern">
     <div class="control">
         <button type="button" class="btn btn-sm btn-primary btn-open-image-selector"><?php // echo $this->lang->line('btn_edit'); ?> <span class="glyphicon glyphicon-edit"></span></button>
