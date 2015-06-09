@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Brands extends MX_Controller {
     public function __construct() {
         parent::__construct();
-        $this->lang->load('common', 'admin');
-        $this->lang->load('brand', 'admin');
+        $this->config->set_item('language', 'admin');
+        $this->lang->load(array('common', 'brand'));
         $this->load->model('brand_model');
     }
     public function index() {
@@ -35,12 +35,15 @@ class Brands extends MX_Controller {
     }
 
     public function create() {
+       
+
         $breadCrumb = array(
             $this->lang->line('brands') => 'admin/brands',
             $this->lang->line('create') => ''
         );
         $buttons = array(
-            'cancel' => true
+            'cancel' => true,
+            'save' => true
         );
         $header = array(
             'lang_title' => $this->lang->line('create_title'),
@@ -56,5 +59,13 @@ class Brands extends MX_Controller {
         $this->load->view('layout/header', $header);
         $this->load->view('brands/create', $content);
         $this->load->view('layout/footer');
+    }
+
+    public function store(){
+        if(!$this->brand_model->setFormValidate()){
+            $this->create();
+        }else{
+            echo 'success';
+        }
     }
 }

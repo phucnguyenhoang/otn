@@ -6,3 +6,6 @@ $lang['create_title'] = 'Brand create';
 $lang['list_title'] = 'Brand List';
 $lang['name'] = 'Name';
 $lang['description'] = 'Description';
+
+//validation
+$lang['brands_name'] = 'testaaaa';
