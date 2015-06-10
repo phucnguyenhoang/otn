@@ -4,25 +4,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Category_model extends CI_Model {
 
     /*
-     * {
-     *      '_id': <mongo id object>
-     *      'alias': <string>
-     *      'name': <string>
-     *      'description': <string>
-     *      'products': [
-     *          {
-     *              '_id': <mongo id object>,
-     *              'group': <string>,
-     *              'name': <string>,
-     *              'price': <number>,
-     *              'color': <string>,
-     *              'size': <string>,
-     *              'description': <string>,
-     *              'images': <array>,
-     *              'new': <number>
-     *          }
-     *      ]
-     * }
+     {
+        "<language>": {
+            "<alias>": {
+                "alias": <string>,
+                "name": <string>,
+                "description": <string>,
+                "keyword": <string>,
+                "common": {
+                    "image": <string>,
+                    "top": <number>,
+                    "order": <number>,
+                    "status": <number>,
+                    "parent": [<string>],
+                    "products": [
+                        {
+                            "alias": <string>,
+                            "name": <string>,
+                            "description": <string>,
+                            "prices": [
+                                {
+                                    "color": <string>,
+                                    "size": <string>,
+                                    "label": <string>,
+                                    "price": <number>
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+     }
      */
 
     public function getCategory($products = true){
