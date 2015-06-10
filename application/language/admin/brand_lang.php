@@ -11,3 +11,4 @@ $lang['edit_title'] = 'Brand edit';
 
 //validation
 $lang['brands_name'] = 'ten thuong hieu';
+$lang['is_unique'] = 'da ton tai %s';
