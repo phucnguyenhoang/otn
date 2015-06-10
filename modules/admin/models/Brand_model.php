@@ -26,26 +26,11 @@ class Brand_model extends CI_Model {
      */
 
     public  $rules = array(
-            array(
-                 'field'   => 'username', 
-                 'label'   => 'lang:brands_name', 
-                 'rules'   => 'required'
-            ),
-            array(
-                 'field'   => 'password', 
-                 'label'   => 'Password', 
-                 'rules'   => 'required'
-            ),
-            array(
-                 'field'   => 'passconf', 
-                 'label'   => 'Password Confirmation', 
-                 'rules'   => 'required'
-            ),   
-            array(
-                 'field'   => 'email', 
-                 'label'   => 'Email', 
-                 'rules'   => 'required'
-            )
+        array(
+             'field'   => 'name', 
+             'label'   => 'lang:brands_name', 
+             'rules'   => 'required'
+        )
     );
     
     public function setFormValidate(){
@@ -69,17 +54,18 @@ class Brand_model extends CI_Model {
             $query = $this->cimongo->select(array('name', 'image', 'description'))->get('brands');
         }
 
+        $query->sort(array('name' => 1));
 
         return $query->result_object();
     }
 
     public function getBrandById($id) {
-        if (!MongoId::isValid($id)) {
-            return false;
-        }
         $query = $this->cimongo->get_where('brands', array('_id' => new MongoId($id)));
-
-        return $query->result_object();
+        $result = $query->result_object();
+        if(count($result)>0){
+            return  $result[0];
+        }
+        return array();
     }
 
     public function getBrandByName($name) {
@@ -93,4 +79,32 @@ class Brand_model extends CI_Model {
 
         return $query->result_object();
     }
+
+    public function storeBrand($data){
+        $record = array(
+            'name' => $data['name'],
+            'image' => $data['image'],
+            'description' => $data['description'],
+            'products' => array()
+        );
+        $query = $this->cimongo->insert('brands',$record);
+        if($query){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateBrand($data){
+        $record = array(
+            'name' => $data['name'],
+            'image' => $data['image'],
+            'description' => $data['description']
+        );
+        $is_update = $this->cimongo->where(array('_id' => new MongoId($data['_id'])))->update_batch('brands',$record);
+        if($is_update) return TRUE;
+        return FALSE;
+    }
+
+
 }

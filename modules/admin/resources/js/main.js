@@ -37,6 +37,7 @@ var Admin = {
                 id: id,
                 url: url
             });
+            view.css('backgroundImage', 'url("' + imgInput.data('image') + '")');
             imgInput.after(view);
         });
     },
