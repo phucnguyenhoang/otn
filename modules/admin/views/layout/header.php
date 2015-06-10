@@ -294,11 +294,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </a>
                                     <?php unset($buttons['create']); ?>
                                 <?php endif; ?>
+
                                 <?php if (!empty($buttons['cancel'])): ?>
                                     <a class="btn btn-default btn-sm" href="<?php echo base_url('admin/'.$this->uri->segment(2)); ?>">
                                         <?php echo $this->lang->line('btn_cancel'); ?>
                                     </a>
                                     <?php unset($buttons['cancel']); ?>
+                                <?php endif; ?>
+
+                                <?php if (!empty($buttons['customize'])): ?>
+                                    <a
+                                        class="btn <?php echo (!empty($buttons['customize']['type']) ? 'btn-'.$buttons['customize']['type'] : 'btn-default'); ?> btn-sm"
+                                        href="<?php echo base_url($buttons['customize']['link']); ?>"
+                                    >
+                                        <?php if (!empty($buttons['customize']['icon'])): ?>
+                                            <span class="glyphicon <?php echo $buttons['customize']['icon']; ?>"></span>&nbsp;
+                                        <?php endif; ?>
+                                        <?php echo $buttons['customize']['label']; ?>
+                                    </a>
+                                    <?php unset($buttons['customize']); ?>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
