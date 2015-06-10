@@ -7,10 +7,12 @@
             <label class="control-label">Brand name</label>                
             <input name="name" type="text" class="form-control" value="<?php 
             	//validation
-            	echo set_value('name'); 
-            	//update record
-            	if(!empty($record->name)) echo $record->name;
-
+                if(!empty(set_value('name'))){
+                    echo set_value('name'); 
+                }else{
+                    //update record
+                    if(!empty($record->name)) echo $record->name;
+                }
             ?>">
             <?php echo form_error('name'); ?>
         </div>

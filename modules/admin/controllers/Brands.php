@@ -97,7 +97,7 @@ class Brands extends MX_Controller {
 
     public function update(){
         $data =$this->input->post();
-        if(!$this->brand_model->setFormValidate()){
+        if(!$this->brand_model->setFormValidate() && !$this->brand_model->is_brand_alias_name_available($data['name'],$data['_id'])){
             $this->edit(array(4 => $data['_id']));
         }else{
             $this->brand_model->updateBrand($data);
