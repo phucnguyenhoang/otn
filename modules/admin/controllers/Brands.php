@@ -70,7 +70,6 @@ class Brands extends MX_Controller {
     }
 
     public function edit($param){
-        // var_dump($param[4]); exit();
         $breadCrumb = array(
             $this->lang->line('brands') => 'admin/brands',
             $this->lang->line('edit') => ''
@@ -98,7 +97,6 @@ class Brands extends MX_Controller {
 
     public function update(){
         $data =$this->input->post();
-        // var_dump($data); exit();
         if(!$this->brand_model->setFormValidate()){
             $this->edit(array(4 => $data['_id']));
         }else{

@@ -24,12 +24,15 @@ class Brand_model extends CI_Model {
      *      ]
      * }
      */
+    function construct(){
+        parent::__construct();
 
+    }
     public  $rules = array(
         array(
              'field'   => 'name', 
              'label'   => 'lang:brands_name', 
-             'rules'   => 'required'
+             'rules'   => 'required|is_unique[brands.name]'
         )
     );
     
@@ -45,7 +48,7 @@ class Brand_model extends CI_Model {
         {
             return true;
         }
-    }
+    }   
 
     public function getBrands($product = true) {
         if ($product) {
@@ -83,6 +86,7 @@ class Brand_model extends CI_Model {
     public function storeBrand($data){
         $record = array(
             'name' => $data['name'],
+            'alias' => url_slug($data['name']),
             'image' => $data['image'],
             'description' => $data['description'],
             'products' => array()
