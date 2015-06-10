@@ -34,8 +34,7 @@ class Plugin extends MX_Controller
             'lang_title' => $this->lang->line('title'),
             'lang_list_title' => $this->lang->line('list_title'),
             'lang_name' => $this->lang->line('name'),
-            'lang_author' => $this->lang->line('author'),
-            'lang_version' => $this->lang->line('version'),
+            'lang_type' => $this->lang->line('type'),
             'lang_description' => $this->lang->line('description'),
             'plugin' => $plugin
         );

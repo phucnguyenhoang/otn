@@ -11,6 +11,7 @@
                         <tr>
                             <th>#</th>
                             <th><?php echo $lang_name; ?></th>
+                            <th><?php echo $lang_type; ?></th>
                             <th><?php echo $lang_description; ?></th>
                             <th>Action</th>
                         </tr>
@@ -21,6 +22,7 @@
                                 <tr class="odd gradeX">
                                     <td><?php echo($order + 1); ?></td>
                                     <td><?php echo $plug->name; ?></td>
+                                    <td><?php echo ($plug->type == 2 ? 'Background' : ''); ?></td>
                                     <td><?php echo $plug->description; ?></td>
                                     <td class="center">
                                         <a class="btn btn-xs btn-success" href="<?php echo base_url("admin/plugin/config/$plug->_id"); ?>"><i class="glyphicon glyphicon-cog"></i></a>
