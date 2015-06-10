@@ -1,6 +1,5 @@
 $(function() {
     Admin.run();
-    console.log($('#base_url').val());
 });
 var Admin = {
     init: function() {
@@ -37,7 +36,10 @@ var Admin = {
                 id: id,
                 url: url
             });
-            view.css('backgroundImage', 'url("' + imgInput.data('image') + '")');
+            if ($.trim(imgInput.data('image')) != '') {
+                view.css('backgroundImage', 'url("' + imgInput.data('image') + '")');
+            }
+
             imgInput.after(view);
         });
     },
