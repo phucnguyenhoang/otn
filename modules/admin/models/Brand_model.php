@@ -32,7 +32,7 @@ class Brand_model extends CI_Model {
         array(
              'field'   => 'name', 
              'label'   => 'lang:brands_name', 
-             'rules'   => 'required|is_unique[brands.name]'
+             'rules'   => 'required|brand_name_is_unique[brands.alias]'
         )
     );
     
@@ -110,5 +110,15 @@ class Brand_model extends CI_Model {
         return FALSE;
     }
 
+
+    function is_brand_alias_name_available($name,$id)
+    {
+        $query = $this->cimongo->where(array(
+            "alias" => strtolower(url_slug($name)),
+            "_id" => new MongoId($id)
+        ));
+        $query = $query->get('brands');
+        return $query->num_rows() == 1;
+    }
 
 }
