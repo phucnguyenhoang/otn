@@ -73,3 +73,11 @@ div.image-selector-view .control button {
 .clear{
     clear: both;
 }
+
+.form-group {
+  padding: 15px;
+}
+
+.tab-content{
+    margin-top: 5px;
+}

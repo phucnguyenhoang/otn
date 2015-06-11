@@ -23,7 +23,7 @@
 </script>
 
 
-<textarea rows="10" name="<?php echo !empty($name)? $name : '' ?>" id='<?php echo !empty($id)? $id : "" ?>' class="col-lg-12 tinymce <?php echo !empty($class)? $class : '' ?>">
+<textarea rows="<?php echo !empty($row)? $row : 10 ?>" name="<?php echo !empty($name)? $name : '' ?>" id='<?php echo !empty($id)? $id : "" ?>' class="col-lg-12 tinymce <?php echo !empty($class)? $class : '' ?>">
     <?php 
         if(!empty($content)){
             echo $content;

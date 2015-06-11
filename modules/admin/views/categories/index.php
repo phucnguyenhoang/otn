@@ -16,22 +16,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php // if (!empty($brands)): ?>
-                                <?php // foreach ($brands as $order => $brand) : ?>
+                            <?php if (!empty($categories)): ?>
+                                <?php foreach ($categories as $order => $category) : ?>
                                     <tr class="odd gradeX">
-                                        <td><?php //echo($order + 1); ?></td>
-                                        <td><?php //echo $brand->name; ?></td>
-                                        <td><?php //echo $brand->description; ?></td>
+                                        <td><?php echo($order + 1); ?></td>
+                                        <td><?php echo $category->name; ?></td>
+                                        <td><?php //echo $category->description; ?></td>
                                         <td class="center">
-                                            <a class="btn btn-xs btn-success" href="<?php //echo base_url("admin/brands/edit/$brand->_id"); ?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                            <a class="btn btn-xs btn-success" href="<?php echo base_url("admin/categories/edit/$category->_id"); ?>"><i class="glyphicon glyphicon-edit"></i></a>
                                             <button class="btn btn-xs btn-danger btn-category-del-record-model" 
-                                                data-category-name="<?php // echo $brand->name; ?>"
-                                                data-category-id="<?php // echo $brand->_id; ?>"
+                                                data-category-name="<?php echo $category->name; ?>"
+                                                data-category-id="<?php echo $category->_id; ?>"
                                             ><i class="glyphicon glyphicon-trash"></i></button>
                                         </td>
                                     </tr>
-                                <?php // endforeach; ?>
-                            <?php // endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -44,7 +44,7 @@
         <div class="modal-content">
           <div class="modal-header fontbold">Thông báo</div>
           <div class="modal-body ">
-            bạn có muốn xóa tên thương hiệu <span class="text-primary text-category-name"></span> ?
+            <?php echo $this->lang->line('delete_confirm'); ?><span class="text-primary text-category-name"></span> ?
           </div>
           <div class="col-lg-12 message-alert"></div>
           <div class="clear"></div>
