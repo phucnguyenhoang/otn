@@ -10,6 +10,7 @@ class Plugin_model extends CI_Model {
         "author_link": <string>,
         "version": <string>,
         "description": <string>,
+        "dir": <string>,
         "type": <number>,
         "status": <number>,
         "create_date": <datetime>,
