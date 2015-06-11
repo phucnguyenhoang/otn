@@ -8,22 +8,22 @@
 			"name" : <string>,
 			"catalog" : <string>,
 			"description" : {
-            "short" : <string>,
+                "short" : <string>,
 				"long": <string>
 			},
 			"keyword": <string>,
 			"tag": <string>,
 			"categories": {
-            "<_id>" : {
-                "alias": <string>,
-					"name": <string>
-				}
+                "<_id>" : {
+                    "alias": <string>,
+                    "name": <string>
+                }
 			},
 			"related": {
-            "<_id>" : {
-                "alias": <string>,
-					"name": <string>,
-					"description": <string>
+                "<_id>" : {
+                    "alias": <string>,
+                    "name": <string>,
+                    "description": <string>
 				}
 			},
 		}
@@ -70,15 +70,15 @@
 		}
 	],
 	"related" : {
-    "<_id>": [
-			{
+        "<_id>": [
+            {
                 "color": <string>,
-				"size": <string>,
-				"label": <string>,
-				"price": <number>,
-				"quantity": <number>
-			}
-		]
+                "size": <string>,
+                "label": <string>,
+                "price": <number>,
+                "quantity": <number>
+            }
+        ]
 	},
 	"images" : [<string>],
 	"comments" : [
