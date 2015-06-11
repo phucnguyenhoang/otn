@@ -18,6 +18,7 @@ class Filemanager extends MX_Controller {
 		'class' => 'box-content-article',
 		'id' => 'box-content-article',
 		'name' => 'box-content-article',
+		'row' => '3',
 		'content' => 'content input'
 	));
 */
