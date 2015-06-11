@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url('modules/admin/resources/css/sb-admin-2.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('modules/admin/resources/bower_components/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('modules/admin/resources/css/layout.css'); ?>" rel="stylesheet">
-
+    <script src="<?php echo base_url('resources/js/jquery-2.1.3.min.js'); ?>"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
