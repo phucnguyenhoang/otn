@@ -111,7 +111,7 @@ class Brand_model extends CI_Model {
     }
 
 
-    function is_brand_alias_name_available($name,$id)
+    public function is_brand_alias_name_available($name,$id)
     {
         $query = $this->cimongo->where(array(
             "alias" => strtolower(url_slug($name)),
@@ -119,6 +119,13 @@ class Brand_model extends CI_Model {
         ));
         $query = $query->get('brands');
         return $query->num_rows() == 1;
+    }
+
+    public function delete_brand_by_id($id){
+        if ($this->cimongo->where(array('_id' => new MongoId($id)))->delete('brands')) {
+            return TRUE;
+        }
+        return FALSE;
     }
 
 }

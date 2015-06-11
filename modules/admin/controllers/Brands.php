@@ -104,4 +104,24 @@ class Brands extends MX_Controller {
             redirect(base_url('admin/brands'));
         }
     }
+
+    public function destroy(){
+        $id = $this->input->post('id');
+        $status = 'success';
+        $message = '';
+        if(!$this->brand_model->delete_brand_by_id($id)){
+            $status = 'failure';
+            $message = 'can not delete!';
+        }
+        $result = array(
+            'status' => $status,
+            'message' => '
+                <div class="col-lg-12 alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    '.$message.'
+                </div>'
+        );
+        header('Content-Type: application/x-json; charset=utf-8');
+        echo(json_encode($result)); 
+    }
 }
