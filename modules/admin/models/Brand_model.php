@@ -7,6 +7,7 @@ class Brand_model extends CI_Model {
      * {
      *      '_id': <mongo id object>
      *      'name': <string>
+     *      'alias': <string>
      *      'image': <string>
      *      'description': <string>
      *      'products': [

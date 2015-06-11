@@ -30,18 +30,23 @@ $config['function'] = array(
         'can_assign' => 0,
         'permission' => 1
     ),
-    'admin/brand/edit' => array(
+    'admin/brands/edit' => array(
         'description' => 'Admin brand edit',
         'can_assign' => 0,
         'permission' => 1
     ),
-    'admin/brand/store' => array(
+    'admin/brands/store' => array(
         'description' => 'Admin brand store',
         'can_assign' => 0,
         'permission' => 1
     ),
-    'admin/brand/update' => array(
+    'admin/brands/update' => array(
         'description' => 'Admin brand update',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/brands/destroy' => array(
+        'description' => 'Admin brand destroy',
         'can_assign' => 0,
         'permission' => 1
     ),
@@ -52,6 +57,36 @@ $config['function'] = array(
     ),
     'admin/plugin/refresh' => array(
         'description' => 'Admin refresh',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/categories/index' => array(
+        'description' => 'Admin category list',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/categories/create' => array(
+        'description' => 'Admin category create',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/categories/edit' => array(
+        'description' => 'Admin category edit',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/categories/store' => array(
+        'description' => 'Admin category store',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/categories/update' => array(
+        'description' => 'Admin category update',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/categories/destroy' => array(
+        'description' => 'Admin category destroy',
         'can_assign' => 0,
         'permission' => 1
     )

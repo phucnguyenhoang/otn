@@ -7,12 +7,12 @@ class Auth_model extends CI_Model {
     	parent::__construct();
   	}
   	/**
-	 * Get user guess permission
+	 * Get user guest permission
 	 *
 	 * @return	array
 	 */
   	public function getUserGuessPermission(){
-  		$query = $this->cimongo->where(array('name' => 'guess'));
+  		$query = $this->cimongo->where(array('name' => 'guest'));
 		$query = $query->get('group_user');
 		if ($query->num_rows() == 1){
 			$group = $query->row();
