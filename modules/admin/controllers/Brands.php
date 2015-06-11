@@ -16,6 +16,7 @@ class Brands extends MX_Controller {
             'create' => true
         );
         $header = array(
+            'js' => array('js/brand_page'),
             'lang_title' => $this->lang->line('title'),
             'bread_crumb' => $breadCrumb,
             'buttons' => $buttons

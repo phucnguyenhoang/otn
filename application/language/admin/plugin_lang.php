@@ -8,4 +8,5 @@ $lang['version'] = 'Version';
 $lang['type'] = 'Type';
 $lang['description'] = 'Description';
 $lang['install'] = 'Install';
+$lang['refresh'] = 'Refresh';
 

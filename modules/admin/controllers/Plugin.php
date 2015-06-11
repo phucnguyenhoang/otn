@@ -17,13 +17,25 @@ class Plugin extends MX_Controller
         );
         $buttons = array(
             'customize' => array(
-                'type' => 'primary',
-                'label' => $this->lang->line('install'),
-                'icon' => 'glyphicon-log-in',
-                'link' => 'admin/plugin/install'
+                array(
+                    'type' => 'primary',
+                    'label' => $this->lang->line('install'),
+                    'icon' => 'glyphicon-log-in',
+                    'link' => 'admin/plugin/install'
+                ),
+                array(
+                    'type' => 'info',
+                    'label' => $this->lang->line('refresh'),
+                    'icon' => 'glyphicon-refresh',
+                    'link' => 'admin/plugin/refresh',
+                    'attr' => array(
+                        'id' => 'btn_plugin_refresh'
+                    )
+                )
             )
         );
         $header = array(
+            'js' => array('js/plugin'),
             'lang_title' => $this->lang->line('title'),
             'bread_crumb' => $breadCrumb,
             'buttons' => $buttons
@@ -41,5 +53,52 @@ class Plugin extends MX_Controller
         $this->load->view('layout/header', $header);
         $this->load->view('plugin/index', $content);
         $this->load->view('layout/footer');
+    }
+
+    public function refresh() {
+        $this->load->model('admin/auth_model');
+        $functions = $this->plugin_model->getPluginFunction();
+        $guest = array();
+        $admin = array();
+        $user = array();
+        foreach ($functions as $i => $function) {
+            switch ($function['permission']) {
+                case 1:
+                    array_push($admin, $function['alias']);
+                    break;
+                case 2:
+                    array_push($user, $function['alias']);
+                    break;
+                case 3:
+                    array_push($admin, $function['alias']);
+                    array_push($user, $function['alias']);
+                    break;
+                case 4:
+                    array_push($guest, $function['alias']);
+                    break;
+                case 5:
+                    array_push($admin, $function['alias']);
+                    array_push($guest, $function['alias']);
+                    break;
+                case 6:
+                    array_push($user, $function['alias']);
+                    array_push($guest, $function['alias']);
+                    break;
+                case 7:
+                    array_push($admin, $function['alias']);
+                    array_push($user, $function['alias']);
+                    array_push($guest, $function['alias']);
+                    break;
+            }
+            unset($functions[$i]['permission']);
+        }
+        $this->plugin_model->removeFunction();
+        $this->plugin_model->saveMultiFunction($functions);
+        $this->plugin_model->updateDefaultGroup($admin, $user, $guest);
+        $this->auth_model->sync_account('admin');
+        $this->auth_model->sync_account('user');
+        $this->auth_model->sync_account('guest');
+
+        return NULL;
     }
 }

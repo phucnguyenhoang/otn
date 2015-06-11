@@ -303,15 +303,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php endif; ?>
 
                                 <?php if (!empty($buttons['customize'])): ?>
-                                    <a
-                                        class="btn <?php echo (!empty($buttons['customize']['type']) ? 'btn-'.$buttons['customize']['type'] : 'btn-default'); ?> btn-sm"
-                                        href="<?php echo base_url($buttons['customize']['link']); ?>"
-                                    >
-                                        <?php if (!empty($buttons['customize']['icon'])): ?>
-                                            <span class="glyphicon <?php echo $buttons['customize']['icon']; ?>"></span>&nbsp;
-                                        <?php endif; ?>
-                                        <?php echo $buttons['customize']['label']; ?>
-                                    </a>
+                                    <?php foreach ($buttons['customize'] as $button): ?>
+                                        <a
+                                            class="btn <?php echo (!empty($button['type']) ? 'btn-'.$button['type'] : 'btn-default'); ?> btn-sm"
+                                            href="<?php echo base_url($button['link']); ?>"
+                                            <?php if (!empty($button['attr'])): ?>
+                                                <?php foreach ($button['attr'] as $key => $value): ?>
+                                                    <?php echo ' '.$key.'="'.$value.'"'; ?>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        >
+                                            <?php if (!empty($button['icon'])): ?>
+                                                <span class="glyphicon <?php echo $button['icon']; ?>"></span>&nbsp;
+                                            <?php endif; ?>
+                                            <?php echo $button['label']; ?>
+                                        </a>
+                                    <?php endforeach; ?>
                                     <?php unset($buttons['customize']); ?>
                                 <?php endif; ?>
                             </div>
