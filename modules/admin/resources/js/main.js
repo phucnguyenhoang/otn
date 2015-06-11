@@ -2,6 +2,15 @@ $(function() {
     Admin.run();
 });
 var Admin = {
+    loading: function(visible){
+        var load = $('#loading');
+        if (visible) {
+            load.show();
+        }
+        else {
+            load.hide();
+        }
+    },
     init: function() {
         this._initModal();
         this._initDataTable();

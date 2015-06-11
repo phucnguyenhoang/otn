@@ -50,3 +50,26 @@ div.image-selector-view .control button {
     color:red;
     font-size:13px;
 }
+
+.display-none{
+    display: none;
+}
+
+#loading{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #269abc;
+    background-image: url("../img/loading.gif");
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 50px 50px;
+    opacity: .5;
+    z-index: 9999999;
+}
+
+.clear{
+    clear: both;
+}

@@ -144,9 +144,19 @@ class Pages extends MX_Controller {
         }
         //check permission
         if(!$this->auth->isAccess("admin",'admin/'.$controller.'/'.$function)){
+            if ($this->input->is_ajax_request()) {
+                $result = array(
+                  'status' => 'failure',
+                  'message' => '<div class="col-lg-12 alert alert-warning alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            no permissoin!
+                        </div>'
+                );
+                header('Content-Type: application/x-json; charset=utf-8');
+                echo(json_encode($result));                 
+            }
             return false;
         }
-        
         echo modules::run('admin/'.$controller.'/'.$function, $URLParams);
     }
 }

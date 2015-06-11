@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="brand_scope">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -24,7 +24,10 @@
                                         <td><?php echo $brand->description; ?></td>
                                         <td class="center">
                                             <a class="btn btn-xs btn-success" href="<?php echo base_url("admin/brands/edit/$brand->_id"); ?>"><i class="glyphicon glyphicon-edit"></i></a>
-                                            <button class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                            <button class="btn btn-xs btn-danger btn-brand-del-record-model" 
+                                                data-brand-name="<?php echo $brand->name; ?>"
+                                                data-brand-id="<?php echo $brand->_id; ?>"
+                                            ><i class="glyphicon glyphicon-trash"></i></button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -35,4 +38,23 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade brand-delete-model display-none" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header fontbold">Thông báo</div>
+          <div class="modal-body ">
+            bạn có muốn xóa tên thương hiệu <span class="text-primary text-brand-name"></span> ?
+          </div>
+          <div class="col-lg-12 message-alert"></div>
+          <div class="clear"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-brand-del-record-confirm" >Xóa</button>
+            <button type="button" class="btn btn-default btn-brand-cancel-del-record" data-dismiss="modal">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
+<script src="<?php echo base_url('modules/admin/resources/js/brand_page.js'); ?>"></script>
