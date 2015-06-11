@@ -33,7 +33,7 @@
 <script src="<?php echo base_url('modules/admin/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js'); ?>"></script>
 <?php if (!empty($js)): ?>
     <?php foreach ($js as $jsPath): ?>
-        <script src="<?php echo base_url('modules/admin/resources/'.$jsPath); ?>"></script>
+        <script src="<?php echo base_url('modules/admin/resources/'.$jsPath).'.js'; ?>"></script>
     <?php endforeach; ?>
 <?php endif; ?>
 <script src="<?php echo base_url('modules/admin/resources/js/sb-admin-2.js'); ?>"></script>

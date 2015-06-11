@@ -57,4 +57,3 @@
     </div>
 
 </div>
-<script src="<?php echo base_url('modules/admin/resources/js/brand_page.js'); ?>"></script>

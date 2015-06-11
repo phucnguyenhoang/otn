@@ -5,6 +5,8 @@ $lang['list_title'] = 'Plugin List';
 $lang['name'] = 'Name';
 $lang['author'] = 'Author';
 $lang['version'] = 'Version';
+$lang['type'] = 'Type';
 $lang['description'] = 'Description';
 $lang['install'] = 'Install';
+$lang['refresh'] = 'Refresh';
 
