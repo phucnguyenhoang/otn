@@ -66,7 +66,8 @@
 *** product_description ***
 {
     <language> : {
-        "<_id>" : {
+        "<alias>" : {
+            "_id": <string>,
             "alias": <string>,
 			"name" : <string>,
 			"catalog" : <string>,

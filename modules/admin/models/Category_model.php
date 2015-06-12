@@ -28,7 +28,8 @@ class Category_model extends CI_Model {
     *** category_description ***
     {
         "<language>" : {
-            "<_id>" : {
+            "<alias>" : {
+                "_id": <string>,
                 "alias": <string>,
                 "name": <string>,
                 "description": <string>,
