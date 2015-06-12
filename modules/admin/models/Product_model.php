@@ -94,3 +94,13 @@
 	}
 }
 */
+class Product_model extends CI_Model {
+
+    function construct(){
+        parent::__construct();
+    }
+
+    public function getProducts() {
+        return false;
+    }
+}
