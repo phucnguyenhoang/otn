@@ -2,35 +2,6 @@
 /*
 *** product ***
 {
-    <language> : {
-    "<_id>" : {
-        "alias": <string>,
-			"name" : <string>,
-			"catalog" : <string>,
-			"description" : {
-                "short" : <string>,
-				"long": <string>
-			},
-			"keyword": <string>,
-			"tag": <string>,
-			"categories": {
-                "<_id>" : {
-                    "alias": <string>,
-                    "name": <string>
-                }
-			},
-			"related": {
-                "<_id>" : {
-                    "alias": <string>,
-                    "name": <string>,
-                    "description": <string>
-				}
-			},
-		}
-	}
-}
-*** product_description ***
-{
     "code": <string>,
 	"prices": [
 		{
@@ -90,5 +61,35 @@
 		}
 	],
 	"status" : <number>
+}
+
+*** product_description ***
+{
+    <language> : {
+        "<_id>" : {
+            "alias": <string>,
+			"name" : <string>,
+			"catalog" : <string>,
+			"description" : {
+                "short" : <string>,
+				"long": <string>
+			},
+			"keyword": <string>,
+			"tag": <string>,
+			"categories": {
+                "<_id>" : {
+                    "alias": <string>,
+                    "name": <string>
+                }
+			},
+			"related": {
+                "<_id>" : {
+                    "alias": <string>,
+                    "name": <string>,
+                    "description": <string>
+				}
+			},
+		}
+	}
 }
 */
