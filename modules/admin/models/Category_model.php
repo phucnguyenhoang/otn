@@ -125,43 +125,42 @@ class Category_model extends CI_Model {
         return $query->result_object();
     }
 
+    public function insertCategoryGetId($category_record){
+        $this->cimongo->insert('categories',$category_record);
+        $category_id = $this->cimongo->insert_id();
+        return $category_id;
+    }
     public function storeCategory($data){
-        // var_dump($data); die();
-
-        //save category and get id inseted
+        //save category and get id inserted
         $category_record = array(
             'image' => $data['category']['image'],
-            'top' => ($data['category']['top'] == "on") ? 1 : 0,
+            'top' => (!empty($data['category']['top']) && $data['category']['top'] == "on") ? 1 : 0,
             'order' => is_numeric(trim($data['category']['order'])) ? (int) trim($data['category']['order']) : 0,
             'status' => is_numeric(trim($data['category']['status'])) ? (int) trim($data['category']['status']) : 0,
             'parent' => $data['category']['parent'],
             'products' => array()
         );
-        $this->cimongo->insert('categories',$category_record);
-        $category_id = $this->cimongo->insert_id();
+        
+        $insertId = $this->insertCategoryGetId($category_record);
 
-        //save category_description
+        //detect language
         $arrLang = $this->language->getLang();
 
         if(count($arrLang) > 0){
             foreach ($arrLang as $key => $lang) {
-                
+                //save category description record
+                $dataRecord = $data[$lang['alias'].'_category'];
+                $category_alias = url_slug($dataRecord['name']);                
+                $catDescRecord[$lang['alias']][$lang['alias']][$category_alias] = array(
+                    'cat_id' => $insertId,
+                    'alias' => $category_alias,
+                    'name' => $dataRecord['name'],
+                    'description' => $dataRecord['description'],
+                    'keyword' => $dataRecord['keyword']
+                );
+                $this->cimongo->insert('category_description',$catDescRecord[$lang['alias']]);
             }
         }
-
-        /*$record = array(
-            'name' => $data['name'],
-            'alias' => url_slug($data['name']),
-            'image' => $data['image'],
-            'description' => $data['description'],
-            'products' => array()
-        );
-        $query = $this->cimongo->insert('categories',$record);
-        if($query){
-            return true;
-        }else{
-            return false;
-        }*/
     }
 
     public function updateCategory($data){

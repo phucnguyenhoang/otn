@@ -26,7 +26,7 @@
                                             <a class="btn btn-xs btn-success" href="<?php echo base_url("admin/categories/edit/$category->_id"); ?>"><i class="glyphicon glyphicon-edit"></i></a>
                                             <button class="btn btn-xs btn-danger btn-category-del-record-model" 
                                                 data-category-name="<?php // echo $category->name; ?>"
-                                                data-category-id="<?php // echo $category->_id; ?>"
+                                                data-category-id="<?php  echo $category->_id; ?>"
                                             ><i class="glyphicon glyphicon-trash"></i></button>
                                         </td>
                                     </tr>
