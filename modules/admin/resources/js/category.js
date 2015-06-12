@@ -68,6 +68,11 @@ var Category_create = {
     		e.preventDefault();
     		$('#form_category_action').submit();
     	});
+
+    	//change input input_category_parent
+    	$(document).bind('focus','#input_category_parent',function(){
+    		alert('ok');
+    	});
     },
     run: function(){
         this.eventHandle();

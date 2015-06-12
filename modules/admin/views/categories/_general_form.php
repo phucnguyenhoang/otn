@@ -5,8 +5,15 @@
         <?php echo $this->lang->line('category_name'); ?>
     </label>
     <div class="col-sm-10">
-        <input type="text" name="<?php echo $alias; ?>_category[name]" value="" placeholder="<?php echo $this->lang->line('category_name'); ?>" id="input-name1" class="form-control">
-        <?php echo form_error('name'); ?>
+        <input type="text" name="<?php echo $alias; ?>_category[name]" value="<?php
+                if(!empty(set_value($alias.'_category[name]'))){
+                    echo set_value($alias.'_category[name]'); 
+                }else{
+                    //update record
+                    if(!empty($record->name)) echo $record->name;
+                }
+         ?>" placeholder="<?php echo $this->lang->line('category_name'); ?>" id="input-name1" class="form-control">
+        <?php echo form_error($alias.'_category[name]');?>
     </div>
     <div class="clear"></div>
 </div>

@@ -5,8 +5,17 @@
         <?php echo $this->lang->line('parent'); ?>
     </label>
     <div class="col-sm-10">
-      <input type="text" name="category[parent]" value="" placeholder="<?php echo $this->lang->line('parent'); ?>" class="form-control">
+        <input type="text" id="input_category_parent" value="" placeholder="<?php echo $this->lang->line('parent'); ?>" class="form-control">
+        <!-- <ul id="input_category_dropdown" class="dropdown-menu" style="top: 35px; left: 15px; display: block;">
+            <li data-value="0"><a href="#"> --- None --- </a></li>
+            <li data-value="87"><a href="#">Áo</a></li>
+            <li data-value="91"><a href="#">Áo&nbsp;&nbsp;&gt;&nbsp;&nbsp;Áo khoác</a></li>
+            <li data-value="88"><a href="#">Áo&nbsp;&nbsp;&gt;&nbsp;&nbsp;Áo kiểu</a></li>
+            <li data-value="89"><a href="#">Áo&nbsp;&nbsp;&gt;&nbsp;&nbsp;Áo sơmi</a></li>
+            <li data-value="90"><a href="#">Áo&nbsp;&nbsp;&gt;&nbsp;&nbsp;Áo thun</a></li>
+        </ul> -->
     </div>
+    <input type="hidden" name="category[parent]" id="input_category_parent_id">
     <div class="clear"></div>
 </div>
 
@@ -49,7 +58,7 @@
     	<?php echo $this->lang->line('status'); ?>
     </label>
     <div class="col-sm-10">
-      	<select name="status" id="input-status" class="form-control">
+      	<select name="category[status]" id="input-status" class="form-control">
       		<option value="1" selected="selected"><?php echo $this->lang->line('status_enabled'); ?></option>
         	<option value="0"><?php echo $this->lang->line('status_disabled'); ?></option>
         </select>
