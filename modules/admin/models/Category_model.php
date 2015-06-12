@@ -4,39 +4,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Category_model extends CI_Model {
 
     /*
-     {
-        "<language>": {
-            "<alias>": {
+     *** categories ***
+    {
+        "image": <string>,
+        "top": <number>,
+        "order": <number>,
+        "status": <number>,
+        "parent": [<_id>],
+        "products": [
+            {
+                "<_id>": [
+                    {
+                        "color": <string>,
+                        "size": <string>,
+                        "label": <string>,
+                        "price": <number>,
+                        "quantity": <number>
+                    }
+                ]
+            }
+        ]
+    }
+    *** category_description ***
+    {
+        "<language>" : {
+            "<alias>" : {
+                "_id": <string>,
                 "alias": <string>,
                 "name": <string>,
                 "description": <string>,
                 "keyword": <string>,
-                "common": {
-                    "image": <string>,
-                    "top": <number>,
-                    "order": <number>,
-                    "status": <number>,
-                    "parent": [<string>],
-                    "products": [
-                        {
-                            "alias": <string>,
-                            "name": <string>,
-                            "description": <string>,
-                            "prices": [
-                                {
-                                    "color": <string>,
-                                    "size": <string>,
-                                    "label": <string>,
-                                    "price": <number>
-                                }
-                            ]
-                        }
-                    ]
+                "products": {
+                    "<_id>": {
+                        "alias": <string>,
+                        "name": <string>,
+                        "description": <string>
+                    }
                 }
             }
         }
-     }
-     */
+    }
+    */
 
     function construct(){
         parent::__construct();

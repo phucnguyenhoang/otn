@@ -2,35 +2,6 @@
 /*
 *** product ***
 {
-    <language> : {
-    "<_id>" : {
-        "alias": <string>,
-			"name" : <string>,
-			"catalog" : <string>,
-			"description" : {
-                "short" : <string>,
-				"long": <string>
-			},
-			"keyword": <string>,
-			"tag": <string>,
-			"categories": {
-                "<_id>" : {
-                    "alias": <string>,
-                    "name": <string>
-                }
-			},
-			"related": {
-                "<_id>" : {
-                    "alias": <string>,
-                    "name": <string>,
-                    "description": <string>
-				}
-			},
-		}
-	}
-}
-*** product_description ***
-{
     "code": <string>,
 	"prices": [
 		{
@@ -91,4 +62,45 @@
 	],
 	"status" : <number>
 }
+
+*** product_description ***
+{
+    <language> : {
+        "<alias>" : {
+            "_id": <string>,
+            "alias": <string>,
+			"name" : <string>,
+			"catalog" : <string>,
+			"description" : {
+                "short" : <string>,
+				"long": <string>
+			},
+			"keyword": <string>,
+			"tag": <string>,
+			"categories": {
+                "<_id>" : {
+                    "alias": <string>,
+                    "name": <string>
+                }
+			},
+			"related": {
+                "<_id>" : {
+                    "alias": <string>,
+                    "name": <string>,
+                    "description": <string>
+				}
+			},
+		}
+	}
+}
 */
+class Product_model extends CI_Model {
+
+    function construct(){
+        parent::__construct();
+    }
+
+    public function getProducts() {
+        return false;
+    }
+}

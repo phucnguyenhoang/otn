@@ -89,5 +89,37 @@ $config['function'] = array(
         'description' => 'Admin category destroy',
         'can_assign' => 0,
         'permission' => 1
-    )
+    ),
+    /* ----products----> */
+    'admin/products/index' => array(
+        'description' => 'Admin product list',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/products/create' => array(
+        'description' => 'Admin product create',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/products/edit' => array(
+        'description' => 'Admin product edit',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/products/store' => array(
+        'description' => 'Admin product store',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/products/update' => array(
+        'description' => 'Admin product update',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    'admin/products/destroy' => array(
+        'description' => 'Admin product destroy',
+        'can_assign' => 0,
+        'permission' => 1
+    ),
+    /* <----products---- */
 );

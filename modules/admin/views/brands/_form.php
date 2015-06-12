@@ -36,6 +36,5 @@
             <?php echo form_error('description'); ?>
         </div>
         <input type="hidden" name="_id" value="<?php if(!empty($record->_id)) echo $record->_id; ?>">
-        <input class="btn btn-success pull-right" type="submit" value="Save" />
     </div>
 </div>   
