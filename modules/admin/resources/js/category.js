@@ -1,5 +1,6 @@
 $(document).ready(function(){
     Category_page.run();
+    Category_create.run();
 });
 
 var Category_page = {
@@ -55,6 +56,18 @@ var Category_page = {
 	        });
 
 		});
+    },
+    run: function(){
+        this.eventHandle();
+    }
+}
+
+var Category_create = {
+    eventHandle: function(){
+    	$(document).on('click','#btn_category_store',function(e){
+    		e.preventDefault();
+    		$('#form_category_action').submit();
+    	});
     },
     run: function(){
         this.eventHandle();

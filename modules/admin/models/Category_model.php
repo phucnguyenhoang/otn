@@ -51,7 +51,7 @@ class Category_model extends CI_Model {
     );
     
     public function setFormValidate(){
-        $this->lang->load('category_lang');
+        $this->lang->load('category');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         $this->form_validation->set_rules($this->rules);
         if ($this->form_validation->run() == FALSE)

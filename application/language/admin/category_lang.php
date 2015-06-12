@@ -10,3 +10,8 @@ $lang['edit_title'] = 'Category edit';
 $lang['sort_order'] = 'Sort Order';
 $lang['action'] = 'Action';
 $lang['delete_confirm'] = 'bạn có muốn xóa ';
+
+$lang['btn_cancel'] = 'Cancel';
+$lang['btn_save'] = 'Save';
+
+$lang['category_name'] = 'ten the loai';
