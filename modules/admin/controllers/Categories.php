@@ -121,4 +121,37 @@ class Categories extends MX_Controller {
         header('Content-Type: application/x-json; charset=utf-8');
         echo(json_encode($result)); 
     }
+
+    public function render_tab($data){
+        $arrLang = $this->language->getLang();
+
+        $content = ""; 
+        $nav_tab = ""; 
+        $tab_pane = "";
+
+        if(count($arrLang) > 0){
+            foreach ($arrLang as $key => $lang) {
+               
+                $nav_tab .=  $this->load->view('categories/_nav_tabs_item',array(
+                    'name' => $lang['name'],
+                    'alias' => $lang['alias'],
+                    'key' => $key)
+                ,true);
+
+                $tab_pane .=  $this->load->view('categories/_tab_pane_item',array(
+                    'alias' => $lang['alias'],
+                    'key' => $key)
+                ,true);
+            }
+        }
+
+        $content .=  $this->load->view('categories/_nav_tabs',array('nav_tab' => $nav_tab),true);
+        $content .=  $this->load->view('categories/_tab_pane',array('tab_pane' => $tab_pane),true);
+
+        echo $this->load->view('categories/_tabpanel',array('content' => $content),true);
+    }
+
+    public function render_general_form($alias){
+         echo $this->load->view('categories/_general_form',array('alias' => $alias),true);
+    }
 }
