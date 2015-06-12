@@ -54,4 +54,16 @@ class MY_Form_validation extends CI_Form_validation{
         return $query->num_rows() === 0;
     }
 
+    /**
+     * brand_name_is_unique
+     *
+     */
+    public function categories_name_is_unique($str, $field)
+    {
+        $arrTemp = explode('.', $field);
+            list($table, $field) = $arrTemp;
+            $query = $this->CI->cimongo->limit(1)->get_where($table, array($field => url_slug($str)));
+        return $query->num_rows() === 0;
+    }
+
 }  

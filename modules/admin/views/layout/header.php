@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url('modules/admin/resources/bower_components/datatables-responsive/css/dataTables.responsive.css'); ?>" rel="stylesheet">
         <?php if (!empty($css)): ?>
         <?php foreach ($css as $cssPath): ?>
-            <link href="<?php echo base_url('modules/admin/resources/'.$cssPath); ?>" rel="stylesheet">
+            <link href="<?php echo base_url('modules/admin/resources/'.$cssPath); ?>.css" rel="stylesheet">
         <?php endforeach; ?>
     <?php endif; ?>
     <link href="<?php echo base_url('modules/admin/resources/css/sb-admin-2.css'); ?>" rel="stylesheet">

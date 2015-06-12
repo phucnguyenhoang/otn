@@ -50,18 +50,38 @@ class Category_model extends CI_Model {
         parent::__construct();
 
     }
-    public  $rules = array(
+   /* public  $rules = array(
         array(
-             'field'   => 'name', 
+             'field'   => 'vn_category[name]', 
              'label'   => 'lang:category_name', 
              'rules'   => 'required|categories_name_is_unique[categories.alias]'
         )
-    );
+    );*/
     
+    public function getRuleName($aliasLang){
+        return 
+        array(
+             'field'   => $aliasLang.'_category[name]', 
+             'label'   => 'lang:category_name', 
+             'rules'   => 'required|categories_name_is_unique[categories.alias]'
+        );
+    }
+
     public function setFormValidate(){
         $this->lang->load('category');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-        $this->form_validation->set_rules($this->rules);
+        
+        $rules = array();
+
+        $arrLang = $this->language->getLang();
+
+        if(count($arrLang) > 0){
+            foreach ($arrLang as $key => $lang) {
+                array_push($rules, $this->getRuleName($lang['alias']));
+            }
+        }
+        $this->form_validation->set_rules($rules);
+
         if ($this->form_validation->run() == FALSE)
         {
             return false;
@@ -106,7 +126,30 @@ class Category_model extends CI_Model {
     }
 
     public function storeCategory($data){
-        $record = array(
+        // var_dump($data); die();
+
+        //save category and get id inseted
+        $category_record = array(
+            'image' => $data['category']['image'],
+            'top' => ($data['category']['top'] == "on") ? 1 : 0,
+            'order' => is_numeric(trim($data['category']['order'])) ? (int) trim($data['category']['order']) : 0,
+            'status' => is_numeric(trim($data['category']['status'])) ? (int) trim($data['category']['status']) : 0,
+            'parent' => $data['category']['parent'],
+            'products' => array()
+        );
+        $this->cimongo->insert('categories',$category_record);
+        $category_id = $this->cimongo->insert_id();
+
+        //save category_description
+        $arrLang = $this->language->getLang();
+
+        if(count($arrLang) > 0){
+            foreach ($arrLang as $key => $lang) {
+                
+            }
+        }
+
+        /*$record = array(
             'name' => $data['name'],
             'alias' => url_slug($data['name']),
             'image' => $data['image'],
@@ -118,7 +161,7 @@ class Category_model extends CI_Model {
             return true;
         }else{
             return false;
-        }
+        }*/
     }
 
     public function updateCategory($data){

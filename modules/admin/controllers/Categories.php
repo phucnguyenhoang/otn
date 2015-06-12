@@ -16,6 +16,7 @@ class Categories extends MX_Controller {
             'create' => true
         );
         $header = array(
+            'js' => array('js/category'),
             'lang_title' => $this->lang->line('title'),
             'bread_crumb' => $breadCrumb,
             'buttons' => $buttons
@@ -76,7 +77,7 @@ class Categories extends MX_Controller {
         if(!$this->category_model->setFormValidate()){
             $this->create();
         }else{
-            $data = $this->input->post();
+            $data = $this->input->post();           
             $this->category_model->storeCategory($data);
             redirect(base_url('admin/categories'));
         }
