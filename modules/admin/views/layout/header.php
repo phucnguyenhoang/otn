@@ -288,6 +288,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php endif; ?>
                         <?php if (!empty($buttons)): ?>
                             <div class="pull-right">
+                                <?php if (!empty($buttons['save'])): ?>
+                                    <button class="btn btn-primary btn-sm" type="submit" form="frm_<?php echo $this->uri->segment(2); ?>">
+                                        <span class="glyphicon glyphicon-floppy-disk"></span> <?php echo $this->lang->line('btn_save'); ?>
+                                    </button>
+                                    <?php unset($buttons['save']); ?>
+                                <?php endif; ?>
+
                                 <?php if (!empty($buttons['create'])): ?>
                                     <a class="btn btn-primary btn-sm" href="<?php echo base_url(implode('/', $this->uri->segments).'/create'); ?>">
                                         <span class="glyphicon glyphicon-plus-sign"></span> <?php echo $this->lang->line('btn_create'); ?>
