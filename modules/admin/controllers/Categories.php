@@ -37,10 +37,26 @@ class Categories extends MX_Controller {
             $this->lang->line('create') => ''
         );
         $buttons = array(
-            'cancel' => true,
-            'save' => true
+            'customize' => array(
+                array(
+                    'type' => 'primary',
+                    'label' => $this->lang->line('btn_save'),
+                    'icon' => 'fa fa-save',
+                    'link' => '',
+                    'attr' => array(
+                        'id' => 'btn_category_store'
+                    )
+                ),
+                array(
+                    'type' => 'default',
+                    'label' => $this->lang->line('btn_cancel'),
+                    'icon' => 'fa fa-reply',
+                    'link' => 'admin/categories',
+                )
+            )
         );
         $header = array(
+            'js' => array('js/category'),
             'lang_title' => $this->lang->line('create_title'),
             'bread_crumb' => $breadCrumb,
             'buttons' => $buttons
@@ -153,5 +169,9 @@ class Categories extends MX_Controller {
 
     public function render_general_form($alias){
          echo $this->load->view('categories/_general_form',array('alias' => $alias),true);
+    }
+
+    public function render_data_form($data){
+         echo $this->load->view('categories/_data_form',array('data' => $data),true);
     }
 }

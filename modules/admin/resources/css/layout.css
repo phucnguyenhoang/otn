@@ -74,10 +74,12 @@ div.image-selector-view .control button {
     clear: both;
 }
 
-.form-group {
-  padding: 15px;
-}
-
 .tab-content{
     margin-top: 5px;
+}
+
+.form-horizontal .control-label {
+  text-align: right;
+  margin-bottom: 0;
+  padding-top: 9px;
 }

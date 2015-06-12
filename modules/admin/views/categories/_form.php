@@ -17,7 +17,7 @@
                 </div>
                 <!-- data -->
                 <div role="tabpanel" class="tab-pane" id="data">
-                    <?php // var_dump($this->language->getLang()); ?>
+                    <?php echo modules::load('admin/categories')->render_data_form(array()); ?>
                 </div>
             </div>
         </div>
